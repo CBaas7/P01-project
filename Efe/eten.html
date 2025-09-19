@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    <title>Code&Quiz</title>
+</head>
+
+<body>
+    <h1>Code&Quiz</h1>
+
+    <div class="quiz-container">
+        <h2>Vraag <span id="vraagNummer">1</span>:</h2>
+        <p id="vraagTekst">...</p>
+
+        <form id="quiz-form">
+            <div id="antwoorden"></div>
+            <br />
+            <button type="button" onclick="checkAnswer()">Controleer antwoord</button>
+        </form>
+
+        <div id="result" class="result"></div>
+        <div id="score" class="score"></div>
+        <button id="resetBtn" onclick="resetQuiz()" style="display:none;">Reset quiz</button>
+    </div>
+    <div class="quiz-container">
+        <!-- Quiz wordt hier dynamisch geladen door JS -->
+    </div>
+    
+</body>
+
+</html>
