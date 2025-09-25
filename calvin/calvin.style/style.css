@@ -1,0 +1,44 @@
+body {
+    background-color: rgb(252, 252, 252);
+}
+
+.header {
+    text-align: center;
+    border: solid black;
+}
+
+.h1-header {
+    color: rgb(68, 0, 255);
+    font-size: 35px;
+}
+
+.main-body {
+display: flex;
+justify-content: center;
+     
+}
+
+.laadbalk{
+    border: solid rgba(0, 0, 0, 0.329);
+    border-radius: 3px;
+    width: 400px;
+    font-size: 20px;
+    text-align: center;
+}
+
+footer{
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+
+.antwoord { 
+    height: 20px;
+    width: 60px;
+}
+
+.button{
+    height: 12px;
+    width: 70px;
+}
