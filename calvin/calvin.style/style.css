@@ -1,44 +1,36 @@
-body {
-    background-color: rgb(252, 252, 252);
+* {
+    background-color: rgba(214, 219, 238, 0.788);
 }
 
-.header {
+.nav {
+    text-align: end;
+    margin: 2px;
+}
+
+h1 {
     text-align: center;
-    border: solid black;
+    font-family: sans-serif;
+    font-style: italic;
+    color: navy;
 }
 
-.h1-header {
-    color: rgb(68, 0, 255);
-    font-size: 35px;
-}
-
-.main-body {
-display: flex;
-justify-content: center;
-     
-}
-
-.laadbalk{
-    border: solid rgba(0, 0, 0, 0.329);
-    border-radius: 3px;
-    width: 400px;
-    font-size: 20px;
+.vraag-balk {
     text-align: center;
+    color:  darkorange;
+    font-size: larger;
+    
 }
 
-footer{
-    background-color: black;
-    color: white;
+.answer-buttons {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr
+}
+
+.answer-buttons button {
+    width: 80%;
+    height: 50ps;
     text-align: center;
+    align-items: center;
 }
 
-
-.antwoord { 
-    height: 20px;
-    width: 60px;
-}
-
-.button{
-    height: 12px;
-    width: 70px;
-}
