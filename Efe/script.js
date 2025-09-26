@@ -1,3 +1,5 @@
+
+//vragen van mijn quiz
 const vragen = [
     {
         vraag: "Welke proeft het zoetst?",
@@ -83,6 +85,8 @@ const vragen = [
 
 let huidigeVraag = 0;
 let score = 0;
+const sizzle = document.getElementById('sizzle');
+const burn = document.getElementById('burn');
 
 function laadVraag() {
     const vraagObj = vragen[huidigeVraag];
@@ -90,7 +94,7 @@ function laadVraag() {
     document.getElementById('vraagTekst').innerText = vraagObj.vraag;
 
     const antwoordenDiv = document.getElementById('antwoorden');
-    antwoordenDiv.innerHTML = ""; // Maak leeg
+    antwoordenDiv.innerHTML = ""; // Maakt het antwoord selectie leeg
 
     vraagObj.opties.forEach((optie, index) => {
         const label = document.createElement('label');
@@ -120,17 +124,19 @@ function checkAnswer() {
     if (gekozenIndex === correcteIndex) {
         score++;
         resultDiv.innerText = "Goed gedaan!";
-        resultDiv.style.color = "green";
+        resultDiv.style.color = "green"
+        sizzle.play()
     } else {
         resultDiv.innerText = `Helaas, het juiste antwoord is: ${vragen[huidigeVraag].opties[correcteIndex]}`;
         resultDiv.style.color = "red";
+        burn.play()
     }
 
-    // Disable radio buttons na keuze
+    // sluit radio buttons
     const radios = document.querySelectorAll('input[name="answer"]');
     radios.forEach(radio => radio.disabled = true);
 
-    // Volgende vraag na korte pauze
+    // Volgende vraag
     setTimeout(() => {
         huidigeVraag++;
         if (huidigeVraag < vragen.length) {
@@ -141,6 +147,7 @@ function checkAnswer() {
     }, 2000);
 }
 
+//toont resultaat, score en het volgende opdracht
 function resetQuiz() {
     huidigeVraag = 0;
     score = 0;
@@ -161,7 +168,7 @@ function resetQuiz() {
     laadVraag();
 }
 
-// Start quiz bij laden
+//start het quiz
 window.onload = () => {
     resetQuiz();
 };

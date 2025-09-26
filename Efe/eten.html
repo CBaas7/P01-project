@@ -13,24 +13,30 @@
 <body>
     <h1>Code&Quiz</h1>
 
+    <div class="container titel-container">
+        <h2 class="titel">Quiz over eten <span id="quiz over eten">:)</span></h2>
+        
+    </div>
     <div class="quiz-container">
         <h2>Vraag <span id="vraagNummer">1</span>:</h2>
         <p id="vraagTekst">...</p>
 
-        <form id="quiz-form">
+          <form id="quiz-form">
             <div id="antwoorden"></div>
             <br />
-            <button type="button" onclick="checkAnswer()">Controleer antwoord</button>
+            <button type="button" class="controle-button" onclick="checkAnswer()">Controleer antwoord</button>
         </form>
 
         <div id="result" class="result"></div>
         <div id="score" class="score"></div>
-        <button id="resetBtn" onclick="resetQuiz()" style="display:none;">Reset quiz</button>
+        <button id="resetBtn" class="reset-button" onclick="resetQuiz()" style="display:none;">Reset quiz</button>
+
+        <audio id="burn" src="/Efe/sound/fire-sound-effect-designed-fire-short-swoosh-120589 (1).mp3"></audio>
+        <audio id="sizzle" src="/Efe/sound/match-sizzle-02-104778.mp3"></audio>
     </div>
-    <div class="quiz-container">
-        <!-- Quiz wordt hier dynamisch geladen door JS -->
-    </div>
+
     
+</div>
 </body>
 
 </html>
