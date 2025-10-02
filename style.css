@@ -1,0 +1,115 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  line-height: 1.6;
+  min-height: 100vh;
+  background-image: url(/bkg/controller-grass.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+header {
+  background-color: #007bff;
+  color: white;
+  padding: 2rem 1rem;
+  text-align: left;
+}
+
+header h1 {
+  font-size: 2.5rem;
+}
+
+/* Footer */
+footer {
+  background-color: #343a40;
+  color: #ddd;
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+}
+
+/* Main layout */
+.main-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* Middenblok */
+.center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Sport + Eten naast elkaar */
+.top-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.top-row img {
+  width: 120px;         /* 👈 Veel kleiner */
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Algemene vragen afbeelding */
+.bottom-row img {
+  width: 250px;         /* 👈 Ook kleiner */
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Calvin/code afbeelding rechts */
+.right-side {
+  flex: 0 0 180px;
+}
+
+.right-side img {
+  width: 100%;          /* 180px max door flex */
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Responsive gedrag */
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .top-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .top-row img,
+  .bottom-row img,
+  .right-side img {
+    width: 80%;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+}
