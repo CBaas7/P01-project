@@ -67,7 +67,7 @@ h2 {
     color: whitesmoke;
 }
 
-.option-wrong {
+.option.wrong {
     background-color: #dc3545;
     color: whitesmoke
 }
