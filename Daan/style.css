@@ -1,15 +1,42 @@
 * {
-    background-color: cornflowerblue;
-    text-align: center;
+  background-color: cornflowerblue;
+  text-align: center;
 }
 
 .button {
-    background-color: white;
-    width: 100px;
-    height: 50px;
-    cursor: pointer;
+  background-color: white;
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
 }
 
 .score {
-    text-align: left;
+  text-align: center;
+}
+
+header,
+h1 {
+  background-color: rgb(45, 109, 228);
+  padding: 5px;
+  margin: 5px;
+}
+
+#knop1 {
+    background-color: red;
+    color: white;
+}
+
+#knop2 {
+    background-color: blue;
+    color: white;
+}
+
+#knop3 {
+    background-color: yellow;
+    color: white;
+}
+
+#knop4 {
+    background-color: green;
+    color: white;
 }
