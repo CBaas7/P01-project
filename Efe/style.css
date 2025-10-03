@@ -29,7 +29,6 @@ h1 {
     text-align: center;
     margin-top: 75px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
 }
 
 button {
@@ -47,7 +46,6 @@ button {
     font-weight: bold;
     font-size: 18px;
     border-radius: 2px;
-
 }
 
 .container {
@@ -59,7 +57,6 @@ button {
     border-style: dotted;
     border-color: black;
     text-align: center;
-
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -71,4 +68,26 @@ button {
     padding: 0;
     width: 120px;
     margin-top: 50px;
+}
+
+
+.home-button-container {
+    margin-top: 30px;
+}
+
+.home-button {
+    padding: 12px 25px;
+    font-size: 18px;
+    background-color: burlywood;
+    border: none;
+    color: black;
+    border-radius: 8px;
+    cursor: pointer;
+    border-style: dotted;
+    border-color: black;
+}
+
+.home-button:hover {
+    background-color: red;
+    transition: background-color 0.3s ease;
 }
