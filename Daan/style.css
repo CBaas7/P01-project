@@ -1,5 +1,5 @@
 * {
-  background-color: cornflowerblue;
+  background-color: #E0D9D9;
   text-align: center;
 }
 
@@ -14,29 +14,52 @@
   text-align: center;
 }
 
-header,
 h1 {
-  background-color: rgb(45, 109, 228);
-  padding: 5px;
-  margin: 5px;
+  background-color: #2F5755;
+  color: #5a9690;
+}
+
+header {
+  background-color: #2F5755;
+  padding: 10px;
 }
 
 #knop1 {
-    background-color: red;
-    color: white;
+  background-color: red;
+  color: white;
 }
 
 #knop2 {
-    background-color: blue;
-    color: white;
+  background-color: blue;
+  color: white;
 }
 
 #knop3 {
-    background-color: rgb(197, 197, 62);
-    color: white;
+  background-color: rgb(197, 197, 62);
+  color: white;
 }
 
 #knop4 {
-    background-color: green;
-    color: white;
+  background-color: green;
+  color: white;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+footer {
+  background-color: #2F5755;
+  padding: 10px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+footer > p {
+  color: #5a9690;
+  background-color: #2F5755;
 }
