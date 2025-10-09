@@ -1,3 +1,5 @@
+// Eelementen
+
 let vraag = document.getElementById("h1Vraag");
 let vraagTekst = document.getElementById("pVraag");
 let scoreTekst = document.getElementById("score");
@@ -8,10 +10,15 @@ let knop4 = document.getElementById("knop4");
 let vraagNummer = 1;
 let score = 0;
 
+
+// Score geven
+
 function updateScore() {
   score = score + 1;
   scoreTekst.innerHTML = "Score: " + score;
 }
+
+//Vragen verranderen
 
 function VraagFout() {
   if (vraagNummer == 1) {
@@ -201,6 +208,8 @@ function VraagFout() {
     knop4.style.display = "none";
   }
 }
+
+// Score geven en vraag verranderen
 
 function VraagCorrect() {
   if (vraagNummer == 1) {
