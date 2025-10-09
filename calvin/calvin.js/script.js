@@ -136,7 +136,7 @@ const questions = [
     answer: 2
   },
   {
-    questions: "Wat doet 'overflow: hidden;'?",
+    question: "Wat doet 'overflow: hidden;'?",
     options: [
       "Verbergt inhoud buiten de container",
       "Maakt een element transparant",
@@ -214,7 +214,7 @@ let currentQuestionIndex = 0;
 let score = 0;
 
 function displayQuestion() {
-    const questionElement = document.getElementById("Question");
+    const questionElement = document.getElementById("question");
     const optionsButtons = document.querySelectorAll(".option");
     const question = questions[currentQuestionIndex];
 
@@ -258,21 +258,44 @@ function nextQuestion() {
     }
 }
 
-function endQuiz() {
-    document.getElementById("question").textContent = "Quiz Complate!";
-    document.querySelector(".option").style.display = "none";
-    document.getElementById("next-btn").style.display = "none";
-    document.getElementById("score").textContent = `Final Score: ${score}/${questions.length}`;
-    document.getElementById("retake-btn").style.display = "inline";
-}
+  function endQuiz() {
+    const questionElement = document.getElementById("question");
+    const optionsButtons = document.querySelectorAll(".option");
 
-function retakeQuiz(){
+    // Verberg alle antwoordknoppen
+    optionsButtons.forEach(btn => btn.style.display = "none");
+
+    // Verberg de "volgende" knop
+    document.getElementById("next-btn").style.display = "none";
+
+    // Toon eindscore en feedback
+    const feedbackMessage = score > 10 
+        ? "Gefeliciteerd, je hebt het behaald!" 
+        : "Jammer, volgende keer beter.";
+
+    questionElement.innerHTML = `
+        <h2>Quiz voltooid!</h2>
+        <p>Je hebt ${score} van de ${questions.length} vragen goed beantwoord.</p>
+        <p><strong>${feedbackMessage}</strong></p>
+    `;
+
+    // Toon opnieuw spelen knop
+    document.getElementById("retake-btn").style.display = "inline";
+} 
+
+function retakeQuiz() {
     score = 0;
     currentQuestionIndex = 0;
 
     document.getElementById("score").textContent = `Score: ${score}`;
-    document.querySelector(".options").style.display = "grid";
+
+    // Toon opnieuw de knoppen
+    document.querySelectorAll(".option").forEach(btn => {
+        btn.style.display = "inline-block";
+    });
+
     displayQuestion();
 }
+
 
 window.onload = displayQuestion;

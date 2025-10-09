@@ -11,8 +11,8 @@ body {
 }
 
 .quiz-container {
-    width: 80%;
-    max-width: 500px;
+    width: 600px;
+    height: 400px;
     background-color: #ffffffd3;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
