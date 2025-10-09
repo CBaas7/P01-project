@@ -7,6 +7,9 @@ let knop1 = document.getElementById("knop1");
 let knop2 = document.getElementById("knop2");
 let knop3 = document.getElementById("knop3");
 let knop4 = document.getElementById("knop4");
+
+// Variabelen
+
 let vraagNummer = 1;
 let score = 0;
 
@@ -260,7 +263,7 @@ function VraagCorrect() {
     vraag.innerHTML = "Vraag 6";
     vraagTekst.innerHTML = "Wat is de naam van het Nederlandse volkslied?";
     knop1.innerHTML = "Wilhelmus";
-    knop2.innerHTML = "Vaderlandslied";
+    knop2.innerHTML = "Vaderlandlied";
     knop3.innerHTML = "Oranje Boven";
     knop4.innerHTML = "Hollandlied";
     knop1.setAttribute("onClick", "javascript: VraagCorrect();");
