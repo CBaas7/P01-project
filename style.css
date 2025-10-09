@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-/* Algemene stijlen */
->>>>>>> f24e771582bfc765a6bcd427592df17425a39215
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -13,11 +9,7 @@ body {
  
 /* Header */
 header {
-<<<<<<< HEAD
   background: linear-gradient(to right, black, white);
-=======
-  background: linear-gradient(to right, #4facfe, #00f2fe);
->>>>>>> f24e771582bfc765a6bcd427592df17425a39215
   color: white;
   padding: 100px 20px 50px 20px;
 }
@@ -25,7 +17,6 @@ header {
 header h1 {
   font-size: 3em;
   margin-bottom: 20px;
-<<<<<<< HEAD
 }
  
 header p {
@@ -76,48 +67,6 @@ a:visited {
   color: black;
 }
 
-=======
-}
- 
-header p {
-  font-size: 1.2em;
-  margin-bottom: 30px;
-}
- 
-.btn {
-  display: inline-block;
-  padding: 12px 30px;
-  background-color: #333;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  transition: background 0.3s;
-}
- 
-.btn:hover {
-  background-color: #555;
-}
- 
-/* Features sectie */
-.features {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 50px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
- 
-.feature {
-  background: white;
-  border-radius: 10px;
-  padding: 20px;
-  width: 250px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
- 
->>>>>>> f24e771582bfc765a6bcd427592df17425a39215
 .feature h2 {
   margin-bottom: 15px;
 }
@@ -125,12 +74,8 @@ header p {
 /* About sectie */
 .about {
   padding: 50px 20px;
-<<<<<<< HEAD
  border-radius: 8px;
  border: 40px;
-=======
-  background: #e0f7fa;
->>>>>>> f24e771582bfc765a6bcd427592df17425a39215
 }
  
 .about h2 {
@@ -145,21 +90,13 @@ header p {
  
 /* Footer */
 footer {
-<<<<<<< HEAD
   background: linear-gradient(to right, white, black);
-=======
-  background: #333;
->>>>>>> f24e771582bfc765a6bcd427592df17425a39215
   color: white;
   padding: 20px;
 }
  
 footer a {
-<<<<<<< HEAD
   color: blue;
-=======
-  color: #00f2fe;
->>>>>>> f24e771582bfc765a6bcd427592df17425a39215
   text-decoration: none;
 }
  
