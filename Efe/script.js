@@ -4,82 +4,98 @@ const vragen = [
     {
         vraag: "Welke proeft het zoetst?",
         opties: ["Baklava", "Köfte", "Kokorec", "Döner"],
-        correct: 0
+        correct: 0,
+        hint: "Het is geen Köfte en geen Kokorec."
     },
     {
         vraag: "Wat is een typisch Italiaans gerecht?",
         opties: ["Pizza", "Sushi", "Curry", "Taco"],
-        correct: 0
+        correct: 0,
+        hint: "Het is geen Sushi en geen Curry."
     },
     {
         vraag: "Wat is de hoofdingrediënt van guacamole?",
         opties: ["Tomaat", "Avocado", "Ui", "Limoen"],
-        correct: 1
+        correct: 1,
+        hint: "Het is geen Tomaat en geen Limoen."
     },
     {
         vraag: "Welke kaas is bekend om zijn gaten?",
         opties: ["Cheddar", "Parmezaan", "Emmentaler", "Brie"],
-        correct: 2
+        correct: 2,
+        hint: "Het is geen Brie en geen Cheddar."
     },
     {
         vraag: "Wat eet je traditioneel met chopsticks?",
         opties: ["Pasta", "Rijst", "Hamburger", "Soep"],
-        correct: 1
+        correct: 1,
+        hint: "Het is geen Hamburger en geen Soep."
     },
     {
         vraag: "Welke vis wordt vaak gebruikt in sushi?",
         opties: ["Zalm", "Kabeljauw", "Makreel", "Tonijn"],
-        correct: 3
+        correct: 3,
+        hint: "Het is geen Kabeljauw en geen Makreel."
     },
     {
         vraag: "Wat is de hoofdingrediënt van hummus?",
         opties: ["Linzen", "Kikkererwten", "Aardappels", "Mais"],
-        correct: 1
+        correct: 1,
+        hint: "Het is geen mais en geen Aardappels."
     },
     {
         vraag: "Wat is een typisch Nederlands gerecht?",
         opties: ["Stamppot", "Paella", "Tzatziki", "Pad Thai"],
-        correct: 0
+        correct: 0,
+        hint: "Het is geen Tzatziki en geen Pad Thai."
     },
     {
         vraag: "Wat is tofu gemaakt van?",
         opties: ["Rijst", "Bonen", "Sojabonen", "Maïs"],
-        correct: 2
+        correct: 2,
+        hint: "Het is geen Maïs en geen Rijst."
     },
     {
         vraag: "Welke vrucht heeft een stekelige buitenkant en zoet vruchtvlees?",
         opties: ["Mango", "Ananas", "Lychee", "Druif"],
-        correct: 1
+        correct: 1,
+        hint: "Het is geen Mango en geen Druif."
     },
     {
         vraag: "Wat drink je meestal bij Engelse 'tea time'?",
         opties: ["Koffie", "Cola", "Thee", "Water"],
-        correct: 2
+        correct: 2,
+        hint: "Het is geen Cola en geen Water."
     },
     {
-        vraag: "Welke groente is oranje en goed voor je ogen?",
+        vraag: "Welke groente is goed voor je ogen?",
         opties: ["Komkommer", "Paprika", "Wortel", "Spinazie"],
-        correct: 2
+        correct: 2,
+        hint: "Het is geen Komkommer en geen Spinazie."
     },
     {
         vraag: "Wat is een populaire zoete snack in Frankrijk?",
         opties: ["Donut", "Baguette", "Macaron", "Taco"],
-        correct: 2
+        correct: 2,
+        hint: "Het is geen Donut en geen Taco."
     },
     {
         vraag: "Wat is het belangrijkste ingrediënt van brood?",
         opties: ["Melk", "Zout", "Meel", "Olie"],
-        correct: 2
+        correct: 2,
+        hint: "Het is geen Zout en geen Melk."
     },
     {
         vraag: "Wat is 'paella' vooral bekend om?",
         opties: ["Rundvlees", "Pasta", "Rijst", "Aardappelen"],
-        correct: 2
+        correct: 2,
+        hint: "Het is geen Aardappelen en geen Rundvlees."
     },
     {
         vraag: "Wat is een vegetarisch alternatief voor vlees?",
         opties: ["Tofu", "Kip", "Zalm", "Ham"],
-        correct: 0
+        correct: 0,
+        hint: "Het is geen Ham en geen Zalm."
     }
 ];
 
@@ -164,6 +180,12 @@ function resetQuiz() {
         <div id="result" class="result"></div>
         <div id="score" class="score"></div>
         <button onclick="resetQuiz()">Reset quiz</button>
+        <button type="hintButton" class="hint-button" onclick="showHint()">Hint</button>
+        <a href="/index.html">
+        <div>
+            <button type="returnButton" class="return-button" onclick="returnToHome()" >Return</button>
+    </div>
+    </a>
     `;
     laadVraag();
 }
@@ -172,3 +194,17 @@ function resetQuiz() {
 window.onload = () => {
     resetQuiz();
 };
+
+let totaalHintCount = 0;
+const hintLimiet = 5;
+
+function showHint() {
+    const vraagObj = vragen[huidigeVraag];
+
+    if (totaalHintCount < hintLimiet) {
+        totaalHintCount++;
+        alert(`Hint: ${vraagObj.hint}\n( ${totaalHintCount} van de ${hintLimiet} hints gebruikt.)`);
+    } else {
+        alert("Je hebt het maximum aantal hints bereikt voor deze quiz.");
+    }
+}
