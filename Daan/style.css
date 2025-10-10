@@ -71,3 +71,7 @@ footer > p {
 a {
   cursor: pointer;
 }
+
+main>a {
+  display: none;
+}

@@ -7,6 +7,8 @@ let knop1 = document.getElementById("knop1");
 let knop2 = document.getElementById("knop2");
 let knop3 = document.getElementById("knop3");
 let knop4 = document.getElementById("knop4");
+let username = prompt("Maak een gebruikersnaam")
+let password = prompt("Maak een wachtwoord")
 
 // Variabelen
 
@@ -209,6 +211,7 @@ function VraagFout() {
     knop2.style.display = "none";
     knop3.style.display = "none";
     knop4.style.display = "none";
+    document.querySelector("main > a").style.display = "block";
   }
 }
 
@@ -413,12 +416,15 @@ function VraagCorrect() {
     updateScore()
     vraagNummer = 20;
   } else if (vraagNummer == 20) {
+    updateScore()
     vraag.innerHTML = "Quiz klaar"
-    vraagTekst.innerHTML = "Je hebt alle 20 vragen beantwoord"
+    let statshalf = score / 20
+    let statsfull = statshalf * 100
+    vraagTekst.innerHTML = "Je hebt alle 20 vragen beantwoord hiervan heb jij " + statsfull + "% goed"
     knop1.style.display = "none";
     knop2.style.display = "none";
     knop3.style.display = "none";
     knop4.style.display = "none";
-    updateScore()
+    document.querySelector("main > a").style.display = "block";
   }
 }
