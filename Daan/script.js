@@ -206,7 +206,9 @@ function VraagFout() {
     vraagNummer = 20;
   } else if (vraagNummer == 20) {
     vraag.innerHTML = "Quiz klaar"
-    vraagTekst.innerHTML = "Je hebt alle 20 vragen beantwoord"
+    let statshalf = score / 20
+    let statsfull = statshalf * 100
+    vraagTekst.innerHTML = "Je hebt alle 20 vragen beantwoord hiervan heb jij " + statsfull + "% goed"
     knop1.style.display = "none";
     knop2.style.display = "none";
     knop3.style.display = "none";
