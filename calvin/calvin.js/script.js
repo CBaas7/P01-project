@@ -222,12 +222,15 @@ function displayQuestion() {
     optionsButtons.forEach((button, index) => {
         button.textContent = question.options[index];
         button.disabled = false;
+        button.style.display = 'inline-block';
         button.classList.remove("current", "wrong");
         button.classList.remove("current", "correct");
     });
 
     document.getElementById("next-btn").style.display = "inline";
     document.getElementById("retake-btn").style.display = "none";
+
+    superpowerBtn.disabled = false;
 }
 
 
@@ -258,8 +261,10 @@ function nextQuestion() {
     }
 }
 
-  function endQuiz() {
-    const questionElement = document.getElementById("question");
+
+
+function endQuiz() {
+  const questionElement = document.getElementById("question");
     const optionsButtons = document.querySelectorAll(".option");
 
     // Verberg alle antwoordknoppen
@@ -272,9 +277,9 @@ function nextQuestion() {
     const feedbackMessage = score > 10 
         ? "Gefeliciteerd, je hebt het behaald!" 
         : "Jammer, volgende keer beter.";
-
+        
     questionElement.innerHTML = `
-        <h2>Quiz voltooid!</h2>
+    <h2>Quiz voltooid!</h2>
         <p>Je hebt ${score} van de ${questions.length} vragen goed beantwoord.</p>
         <p><strong>${feedbackMessage}</strong></p>
     `;
@@ -286,16 +291,22 @@ function nextQuestion() {
 function retakeQuiz() {
     score = 0;
     currentQuestionIndex = 0;
+    superpowerUsed = false;
 
     document.getElementById("score").textContent = `Score: ${score}`;
-
+    
     // Toon opnieuw de knoppen
     document.querySelectorAll(".option").forEach(btn => {
-        btn.style.display = "inline-block";
+      btn.style.display = "inline-block";
     });
-
+    
+    
+    superpowerBtn.disabled = false;
     displayQuestion();
-}
+  }
+  
+  const removeWrongAnser = document.getElementById('#superpower-btn');
+
 
 
 window.onload = displayQuestion;

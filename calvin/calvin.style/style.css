@@ -12,7 +12,7 @@ body {
 
 .quiz-container {
     width: 600px;
-    height: 400px;
+    height: auto;
     background-color: #ffffffd3;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -53,6 +53,29 @@ h2 {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.super-power {
+  display: inline-block;
+  margin: 10px auto 20px auto;
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: #ff4081;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 60%;
+}
+
+.super-power:hover {
+  background-color: #e91e63;
+}
+
+.super-power:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
 #next-btn:hover, #retake-btn:hover{
