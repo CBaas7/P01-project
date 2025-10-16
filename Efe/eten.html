@@ -15,13 +15,13 @@
 
     <div class="container titel-container">
         <h2 class="titel">Quiz over eten <span id="quiz over eten">:)</span></h2>
-        
     </div>
+
     <div class="quiz-container">
         <h2>Vraag <span id="vraagNummer">1</span>:</h2>
         <p id="vraagTekst">...</p>
 
-          <form id="quiz-form">
+        <form id="quiz-form">
             <div id="antwoorden"></div>
             <br />
             <button type="button" class="controle-button" onclick="checkAnswer()">Controleer antwoord</button>
@@ -33,7 +33,22 @@
 
         <audio id="burn" src="/Efe/sound/fire-sound-effect-designed-fire-short-swoosh-120589 (1).mp3"></audio>
         <audio id="sizzle" src="/Efe/sound/match-sizzle-02-104778.mp3"></audio>
+
+    
+        <div style="margin-top:8px;">
+            <button type="button" id="hintBtn" class="hint-button" onclick="showHint()">Hint (<span id="hintsLeft">3</span>)</button>
+        </div>
+
+        <div id="hintText" class="result" style="display:none; margin-top:10px;"></div>
+
+        <div class="return-button-container" style="margin-top:8px;">
+            <button type="button" id="hideHintBtn" class="hide-hint-button" onclick="hideHint()" style="display:none;">Sluit hint</button>
+        </div>
+
+        
+        <div class="return-button-container" style="margin-top:8px;">
+            <button type="button" id="returnBtn" class="return-button" onclick="goBack()">Terug</button>
+        </div>
     </div>
-</div>
 </body>
 </html>

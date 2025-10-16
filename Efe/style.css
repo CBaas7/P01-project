@@ -42,6 +42,17 @@ button {
     background-color: bisque;
 }
 
+
+.hint-button {
+    background-color: #ffdca3;
+    border: 1px solid #aa7a3b;
+    margin-right: 8px;
+}
+.hide-hint-button {
+    background-color: #f0e6d6;
+    border: 1px solid #8b6d45;
+}
+
 .result {
     margin-top: 20px;
     font-weight: bold;
@@ -71,4 +82,14 @@ button {
     padding: 0;
     width: 120px;
     margin-top: 50px;
+}
+
+a{
+    text-decoration: none
+    color black;
+}
+
+.return-button-container {
+    /* Zorgt dat de terug-knop apart onder de hint staat */
+    margin-top: 8px;
 }

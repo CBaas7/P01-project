@@ -1,5 +1,3 @@
-
-//vragen van mijn quiz
 const vragen = [
     {
         vraag: "Welke proeft het zoetst?",
@@ -88,13 +86,38 @@ let score = 0;
 const sizzle = document.getElementById('sizzle');
 const burn = document.getElementById('burn');
 
+
+const maxHints = 3;
+let hintsLeft = maxHints;
+let usedHints = new Array(vragen.length).fill(false);
+
+
+const hints = [
+    "Zoet dessert uit het Midden-Oosten.",
+    "Denk aan Napels en mozzarella.",
+    "Groene vrucht, romig van binnen.",
+    "Zwitserse kaas met gaten.",
+    "Gebruik stokjes om dit te eten.",
+    "Populaire sushi-vis (roze/oranje).",
+    "Gemaakt van een peulvrucht: begint met 'k'.",
+    "Hollandse stamppot met aardappel en groente.",
+    "Gemaakt van sojabonen.",
+    "Tropische vrucht met ruwe schil.",
+    "Warm drankje van blaadjes.",
+    "Knol die oranje van binnen is.",
+    "Klein kleurrijk koekje vaak in Parijs.",
+    "Basisvoorraad voor brood.",
+    "Spaans gerecht met rijst en saffraan.",
+    "Witte blokken gemaakt van sojabonen."
+];
+
 function laadVraag() {
     const vraagObj = vragen[huidigeVraag];
     document.getElementById('vraagNummer').innerText = huidigeVraag + 1;
     document.getElementById('vraagTekst').innerText = vraagObj.vraag;
 
     const antwoordenDiv = document.getElementById('antwoorden');
-    antwoordenDiv.innerHTML = ""; // Maakt het antwoord selectie leeg
+    antwoordenDiv.innerHTML = "";
 
     vraagObj.opties.forEach((optie, index) => {
         const label = document.createElement('label');
@@ -108,6 +131,12 @@ function laadVraag() {
 
     document.getElementById('result').innerText = "";
     document.getElementById('score').innerText = `Score: ${score} / ${vragen.length}`;
+
+   
+    document.getElementById('hintText').style.display = 'none';
+    document.getElementById('hideHintBtn').style.display = 'none';
+    document.getElementById('hintBtn').disabled = (hintsLeft <= 0) || usedHints[huidigeVraag];
+    document.getElementById('hintsLeft').innerText = hintsLeft;
 }
 
 function checkAnswer() {
@@ -132,11 +161,11 @@ function checkAnswer() {
         burn.play()
     }
 
-    // sluit radio buttons
+   
     const radios = document.querySelectorAll('input[name="answer"]');
     radios.forEach(radio => radio.disabled = true);
 
-    // Volgende vraag
+    
     setTimeout(() => {
         huidigeVraag++;
         if (huidigeVraag < vragen.length) {
@@ -147,10 +176,42 @@ function checkAnswer() {
     }, 2000);
 }
 
-//toont resultaat, score en het volgende opdracht
+
+function showHint() {
+    if (hintsLeft <= 0) {
+        alert("Geen hints meer over.");
+        return;
+    }
+    if (usedHints[huidigeVraag]) {
+        alert("Hint al gebruikt voor deze vraag.");
+        return;
+    }
+    usedHints[huidigeVraag] = true;
+    hintsLeft--;
+    document.getElementById('hintText').innerText = hints[huidigeVraag] || "Geen hint beschikbaar.";
+    document.getElementById('hintText').style.display = 'block';
+ 
+    document.getElementById('hideHintBtn').style.display = 'inline-block';
+    document.getElementById('hintBtn').disabled = (hintsLeft <= 0);
+    document.getElementById('hintsLeft').innerText = hintsLeft;
+}
+
+function hideHint() {
+    document.getElementById('hintText').style.display = 'none';
+    document.getElementById('hideHintBtn').style.display = 'none';
+}
+
+function goBack() {
+    
+    window.history.back();
+}
+
+
 function resetQuiz() {
     huidigeVraag = 0;
     score = 0;
+    hintsLeft = maxHints;
+    usedHints = new Array(vragen.length).fill(false);
     const container = document.querySelector('.quiz-container');
     container.innerHTML = `
         <h2 class="vraag">Vraag <span id="vraagNummer">1</span>:</h2>
@@ -163,12 +224,27 @@ function resetQuiz() {
 
         <div id="result" class="result"></div>
         <div id="score" class="score"></div>
-        <button onclick="resetQuiz()">Reset quiz</button>
+
+        <div style="margin-top:8px;">
+            <button type="button" id="hintBtn" class="hint-button" onclick="showHint()">Hint (<span id="hintsLeft">${hintsLeft}</span>)</button>
+        </div>
+
+        <div id="hintText" class="result" style="display:none; margin-top:10px;"></div>
+
+        <div class="return-button-container" style="margin-top:8px;">
+            <button type="button" id="hideHintBtn" class="hide-hint-button" onclick="hideHint()" style="display:none;">Sluit hint</button>
+        </div>
+
+        <div class="return-button-container" style="margin-top:8px;">
+            <button type="button" id="returnBtn" class="return-button" onclick="goBack()">Terug</button>
+        </div>
+
+        <button onclick="resetQuiz()" style="margin-top:10px;">Reset quiz</button>
     `;
     laadVraag();
 }
 
-//start het quiz
+
 window.onload = () => {
     resetQuiz();
 };
