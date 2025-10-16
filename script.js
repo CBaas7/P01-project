@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!overlay.querySelector('.overlay-content')) {
     overlay.innerHTML = `
       <div class="overlay-content" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
-        <h2 id="gateTitle">Welkom — even voorstellen</h2>
-        <p>Vul je naam en leeftijd in om verder te gaan.</p>
+        <h2 id="gateTitle">Welkom, voer uw naam en leefijd om door te gaan</h2>
+        <p></p>
         <form id="gateForm">
           <input type="text" id="visitorName" name="name" placeholder="Je naam" required />
           <input type="number" id="visitorAge" name="age" placeholder="Leeftijd" required min="1" />

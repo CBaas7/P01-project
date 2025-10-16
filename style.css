@@ -5,10 +5,13 @@ body {
   background: #f5f5f5;
   color: #333;
   text-align: center;
+  background-image: url(/img/quiz-animated-icon-download-in-lottie-json-gif-static-svg-file-formats--exam-test-education-question-examination-set-01-pack-school-icons-8006861.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
  
 header {
-  background: linear-gradient(to right, #4facfe, #00f2fe);
+  background: linear-gradient(to right, black, darkgrey);
   color: white;
   padding: 100px 20px 50px 20px;
 }
