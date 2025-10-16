@@ -1,0 +1,85 @@
+/* Font & background color */
+* {
+  background-color: #E0D9D9;
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  zoom: 120%;
+  cursor: help;
+}
+
+/* Button config */
+.button {
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.score {
+  text-align: center;
+}
+
+/* h1 met textstroke */
+h1 {
+  background-color: #2F5755;
+  color: #5a9690;
+  -webkit-text-stroke: 1.5px #72beb7;
+}
+
+header {
+  background-color: #2F5755;
+  padding: 10px;
+}
+
+#knop1 {
+  background-color: red;
+  color: white;
+}
+
+#knop2 {
+  background-color: blue;
+  color: white;
+}
+
+#knop3 {
+  background-color: rgb(197, 197, 62);
+  color: white;
+}
+
+#knop4 {
+  background-color: green;
+  color: white;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+footer {
+  background-color: #2F5755;
+  padding: 10px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+footer > p {
+  color: #5a9690;
+  background-color: #2F5755;
+}
+
+a {
+  cursor: pointer;
+}
+
+main>a {
+  display: none;
+}
+
+/* button effect */
+.button:hover {
+  transform: scale(1.2);
+  margin: 10px;
+}
