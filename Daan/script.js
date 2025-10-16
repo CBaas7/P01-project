@@ -1,5 +1,4 @@
 // Eelementen
-
 let vraag = document.getElementById("h1Vraag");
 let vraagTekst = document.getElementById("pVraag");
 let scoreTekst = document.getElementById("score");
@@ -7,24 +6,19 @@ let knop1 = document.getElementById("knop1");
 let knop2 = document.getElementById("knop2");
 let knop3 = document.getElementById("knop3");
 let knop4 = document.getElementById("knop4");
-let username = prompt("Maak een gebruikersnaam")
-let password = prompt("Maak een wachtwoord")
+let codeEnQuiz = document.querySelector("h1")
 
 // Variabelen
-
 let vraagNummer = 1;
 let score = 0;
 
-
 // Score geven
-
 function updateScore() {
   score = score + 1;
   scoreTekst.innerHTML = "Score: " + score;
 }
 
 //Vragen verranderen
-
 function VraagFout() {
   if (vraagNummer == 1) {
     vraag.innerHTML = "Vraag 2";
@@ -218,7 +212,6 @@ function VraagFout() {
 }
 
 // Score geven en vraag verranderen
-
 function VraagCorrect() {
   if (vraagNummer == 1) {
     vraag.innerHTML = "Vraag 2";
@@ -430,3 +423,8 @@ function VraagCorrect() {
     document.querySelector("main > a").style.display = "block";
   }
 }
+
+// easteregg
+codeEnQuiz.addEventListener("click", function() {
+  alert("Code&Quiz")
+})
