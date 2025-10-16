@@ -195,8 +195,8 @@ function VraagFout() {
     vraagTekst.innerHTML = "Wat is de langste rivier ter wereld?"
     knop1.innerHTML = "Amazone";
     knop2.innerHTML = "Nijl";
-    knop3.innerHTML = "Mississippi";
-    knop4.innerHTML = "Yangtze";
+    knop3.style.display = "none";
+    knop4.style.display = "none";
     vraagNummer = 20;
   } else if (vraagNummer == 20) {
     vraag.innerHTML = "Quiz klaar"
@@ -205,8 +205,6 @@ function VraagFout() {
     vraagTekst.innerHTML = "Je hebt alle 20 vragen beantwoord hiervan heb jij " + statsfull + "% goed"
     knop1.style.display = "none";
     knop2.style.display = "none";
-    knop3.style.display = "none";
-    knop4.style.display = "none";
     document.querySelector("main > a").style.display = "block";
   }
 }
@@ -406,8 +404,8 @@ function VraagCorrect() {
     vraagTekst.innerHTML = "Wat is de langste rivier ter wereld?"
     knop1.innerHTML = "Amazone";
     knop2.innerHTML = "Nijl";
-    knop3.innerHTML = "Mississippi";
-    knop4.innerHTML = "Yangtze";
+    knop3.style.display = "none";
+    knop4.style.display = "none";
     updateScore()
     vraagNummer = 20;
   } else if (vraagNummer == 20) {
@@ -418,8 +416,6 @@ function VraagCorrect() {
     vraagTekst.innerHTML = "Je hebt alle 20 vragen beantwoord hiervan heb jij " + statsfull + "% goed"
     knop1.style.display = "none";
     knop2.style.display = "none";
-    knop3.style.display = "none";
-    knop4.style.display = "none";
     document.querySelector("main > a").style.display = "block";
   }
 }
