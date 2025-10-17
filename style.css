@@ -238,3 +238,21 @@ footer a:hover {
 }
 
 /* behoud overige bestaande styles hieronder */
+
+/* Footer layout: tekst links, knop rechts */
+.footer-inner{
+  max-width:1100px;
+  margin:0 auto;
+  padding:16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+#aboutBtn{
+  padding:8px 14px;
+  border-radius:8px;
+  text-decoration:none;
+  font-size: 20px;
+  border-color: #111;
+}

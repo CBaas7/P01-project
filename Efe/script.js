@@ -236,7 +236,7 @@ function resetQuiz() {
         </div>
 
         <div class="return-button-container" style="margin-top:8px;">
-            <button type="button" id="returnBtn" class="return-button" onclick="goBack()">Terug</button>
+            <button type="button" id="returnBtn" class="return-button" onclick="goBack()">Home</button>
         </div>
 
         <button onclick="resetQuiz()" style="margin-top:10px;">Reset quiz</button>
