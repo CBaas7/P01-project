@@ -212,6 +212,7 @@ const questions = [
 
 let currentQuestionIndex = 0;
 let score = 0;
+let superpowerUsed = false;
 
 function displayQuestion() {
     const questionElement = document.getElementById("question");
@@ -230,7 +231,10 @@ function displayQuestion() {
     document.getElementById("next-btn").style.display = "inline";
     document.getElementById("retake-btn").style.display = "none";
 
-    superpowerBtn.disabled = false;
+    superpowerUsed = false;
+    if (superpowerBtn) {
+        superpowerBtn.disabled = false;
+    }
 }
 
 
@@ -291,7 +295,7 @@ function endQuiz() {
 function retakeQuiz() {
     score = 0;
     currentQuestionIndex = 0;
-    superpowerUsed = false;
+    
 
     document.getElementById("score").textContent = `Score: ${score}`;
     
@@ -300,13 +304,33 @@ function retakeQuiz() {
       btn.style.display = "inline-block";
     });
     
-    
-    superpowerBtn.disabled = false;
     displayQuestion();
   }
   
-  const removeWrongAnser = document.getElementById('#superpower-btn');
+const superpowerBtn = document.getElementById("superpower-btn");
+if (superpowerBtn) {
+    superpowerBtn.addEventListener("click", superpower);
+}
 
+function superpower() {
+    if (superpowerUsed) {
+        return;
+    }
 
+    const question = questions[currentQuestionIndex];
+    const optionButtons = Array.from(document.querySelectorAll(".option"));
+    const incorrectButtons = optionButtons.filter((_, index) => index !== question.answer);
+
+    const buttonsToHide = incorrectButtons
+        .sort(() => Math.random() - 0.5)
+        .slice(0, Math.min(2, incorrectButtons.length));
+
+    buttonsToHide.forEach(button => {
+        button.style.display = "none";
+    });
+
+    superpowerUsed = true;
+    superpowerBtn.disabled = true;
+}
 
 window.onload = displayQuestion;
