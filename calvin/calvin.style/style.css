@@ -45,6 +45,20 @@ h2 {
     background-color: #4c4eb7;
 }
 
+.home-btn {
+    width: 150px;
+    height: 25;
+    background-color: slategray;
+    color: white;
+    border-radius: 20px;
+}
+
+.home-btn:hover {
+    cursor: pointer;
+    background-color: lightgray;
+    color: #333;
+}
+
 #next-btn, #retake-btn {
     padding: 10px 20px;
     font-size: 1em;
