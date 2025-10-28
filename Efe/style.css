@@ -1,3 +1,4 @@
+/* dit het body/ achtergrond van mijn quiz */
 body {
     font-family: Arial, sans-serif;
     background-color: gray;
@@ -9,6 +10,7 @@ body {
     background-size: cover;
 }
 
+/* dit is voor mijn h1 */
 h1 {
     color: black;
     background-color: burlywood;
@@ -18,6 +20,7 @@ h1 {
     border-color: black;
 }
 
+/* dit is voor alles in mijn quiz container */
 .quiz-container {
     background-color: burlywood;
     border-radius: 8px;
@@ -32,6 +35,7 @@ h1 {
 
 }
 
+/* dit zijn voor mijn algemene buttons. controleer en reset */
 button {
     padding: 10px 20px;
     font-size: 16px;
@@ -42,17 +46,20 @@ button {
     background-color: bisque;
 }
 
-
+/* dit is voor mijn hint button */
 .hint-button {
     background-color: #ffdca3;
     border: 1px solid #aa7a3b;
     margin-right: 8px;
 }
+
+/* dit is voor her hidden version */
 .hide-hint-button {
     background-color: #f0e6d6;
     border: 1px solid #8b6d45;
 }
 
+/* dit is coor het uiterlijk van het resultaat */
 .result {
     margin-top: 20px;
     font-weight: bold;
@@ -61,6 +68,7 @@ button {
 
 }
 
+/* dit is voor het container. waar alles in zit */
 .container {
     background-color: burlywood;
     border-radius: 10px;
@@ -74,22 +82,61 @@ button {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* dit is vor mijn title */
 .titel {
     font-size: 14px;
 }
 
+/* dit is voor mijn title container */
 .titel-container {
     padding: 0;
     width: 120px;
     margin-top: 50px;
 }
 
+/* dit is voor mijn link naar het home pagina */
 a{
     text-decoration: none
     color black;
 }
 
+/* dit is zodat het hint apart van terug knopje staat */
 .return-button-container {
-    /* Zorgt dat de terug-knop apart onder de hint staat */
     margin-top: 8px;
+}
+
+/* uitleg tekst */
+.uitleg {
+    font-size: 0.95rem;
+    color: #222;
+    margin-bottom: 8px;
+}
+
+/* antwoord blokknoppen */
+.answer-btn {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    margin: 8px 0;
+    text-align: left;
+    border-radius: 8px;
+    border: 2px solid #8b6d45;
+    background: #fff5e6;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform .08s ease, box-shadow .12s ease, background .08s ease;
+}
+.answer-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+.answer-btn.selected {
+    background: #ffdca3;
+    border-color: #aa7a3b;
+}
+.answer-btn:disabled {
+    opacity: 0.7;
+    cursor: default;
+    transform: none;
+    box-shadow: none;
 }

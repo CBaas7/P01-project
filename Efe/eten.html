@@ -11,41 +11,51 @@
 </head>
 
 <body>
-    <h1>Code&Quiz</h1>
+    <!-- audio voor feedback -->
+    <audio id="sizzle" preload="auto" src="/Efe/sound/match-sizzle-02-104778.mp3"></audio>
+    <audio id="burn"   preload="auto" src="/Efe/sound/fire-sound-effect-designed-fire-short-swoosh-120589 (1).mp3"></audio>
 
+    <!-- title -->
+    <h1>Code&Quiz</h1>
+     
+    <!-- dit container is voor mijn title -->
     <div class="container titel-container">
         <h2 class="titel">Quiz over eten <span id="quiz over eten">:)</span></h2>
     </div>
-
+    <!-- dit is voor mijn vragen -->
     <div class="quiz-container">
         <h2>Vraag <span id="vraagNummer">1</span>:</h2>
         <p id="vraagTekst">...</p>
-
+        
+        <!-- dit is voor mijn controle button -->
         <form id="quiz-form">
             <div id="antwoorden"></div>
             <br />
             <button type="button" class="controle-button" onclick="checkAnswer()">Controleer antwoord</button>
         </form>
-
+        
+        <!-- dit is voor het deel die mijn resultaat, score en reset knopje toont -->
         <div id="result" class="result"></div>
         <div id="score" class="score"></div>
         <button id="resetBtn" class="reset-button" onclick="resetQuiz()" style="display:none;">Reset quiz</button>
-
+        <!-- dit is voor mijn sound -->
         <audio id="burn" src="/Efe/sound/fire-sound-effect-designed-fire-short-swoosh-120589 (1).mp3"></audio>
         <audio id="sizzle" src="/Efe/sound/match-sizzle-02-104778.mp3"></audio>
 
-    
+         <!-- hier toon ik mijn hint knopje -->
         <div style="margin-top:8px;">
             <button type="button" id="hintBtn" class="hint-button" onclick="showHint()">Hint (<span id="hintsLeft">3</span>)</button>
         </div>
-
+        
+        <!-- dit is voor mijn hint bericht -->
         <div id="hintText" class="result" style="display:none; margin-top:10px;"></div>
-
+        
+        <!-- dit is voor mijn hint, als je er op drukt verdwijnt de aangetoonde hint -->
         <div class="return-button-container" style="margin-top:8px;">
             <button type="button" id="hideHintBtn" class="hide-hint-button" onclick="hideHint()" style="display:none;">Sluit hint</button>
         </div>
-
-        
+ 
+         <!-- dit is om terug te gaan naar home -->
         <div class="return-button-container" style="margin-top:8px;">
             <button type="button" id="returnBtn" class="return-button" onclick="goBack()">Home</button>
         </div>

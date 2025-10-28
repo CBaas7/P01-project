@@ -23,7 +23,7 @@ body {
 }
 
 .site-header {
-  background: linear-gradient(90deg, black 0%, darkgrey 100%);
+  background: linear-gradient(90deg, black 0%, darkgrey  100%);
   color: #fff;
   padding: 24px 16px;
   box-shadow: 0 4px 18px rgba(43, 124, 255, 0.12);
