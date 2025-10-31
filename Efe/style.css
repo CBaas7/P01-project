@@ -108,7 +108,7 @@ a{
 /* uitleg tekst */
 .uitleg {
     font-size: 0.95rem;
-    color: #222;
+    color: black;
     margin-bottom: 8px;
 }
 
@@ -120,8 +120,8 @@ a{
     margin: 8px 0;
     text-align: left;
     border-radius: 8px;
-    border: 2px solid #8b6d45;
-    background: #fff5e6;
+    border: 2px solid brown;
+    background: mintcream;
     font-size: 16px;
     cursor: pointer;
     transition: transform .08s ease, box-shadow .12s ease, background .08s ease;
@@ -131,8 +131,8 @@ a{
     box-shadow: 0 8px 18px rgba(0,0,0,0.08);
 }
 .answer-btn.selected {
-    background: #ffdca3;
-    border-color: #aa7a3b;
+    background: green;
+    border-color: black;
 }
 .answer-btn:disabled {
     opacity: 0.7;
