@@ -238,3 +238,49 @@ footer a:hover {
 }
 
 /* behoud overige bestaande styles hieronder */
+
+/* Footer layout: tekst links, knop rechts */
+.footer-inner{
+  max-width:1100px;
+  margin:0 auto;
+  padding:16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+#aboutBtn{
+  padding:8px 14px;
+  border-radius:8px;
+  text-decoration:none;
+  font-size: 20px;
+  border-color: #111;  /* ...existing code... */
+  
+  /* Zorg dat footer altijd onderaan staat */
+  html, body {
+    height: 100%;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* hoofdcontent groeit zodat footer onderaan blijft */
+  main {
+    flex: 1 0 auto;
+    padding: 40px 16px 80px;
+  }
+  
+  /* maak footer compact en vast onderaan (niet fixed) */
+  footer {
+    margin-top: 0;
+    padding: 18px 12px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    background: transparent;
+    flex-shrink: 0;
+  }
+  
+  /* ...existing code... */
+}

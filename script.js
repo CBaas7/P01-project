@@ -1,32 +1,39 @@
-// Gecombineerde gate + game-tile interacties
-document.addEventListener('DOMContentLoaded', () => {
-  const MIN_AGE = 10;
+// Wacht tot het volledige document geladen is
+document.addEventListener("DOMContentLoaded", () => {
+  // Minimale toegestane leeftijd
+  const MIN_AGE = 5;
   console.log(`[gate] script geladen (min age = ${MIN_AGE})`);
 
-  // --- Gate / overlay setup ----------------------------------------------------------------
-  let logoutBtn = document.getElementById('logoutBtn');
+  //  Gate / overlay setup
+  // Controleer of er al een logout-knop bestaat.
+  let logoutBtn = document.getElementById("logoutBtn");
   if (!logoutBtn) {
-    const header = document.querySelector('header .header-container') || document.querySelector('header') || document.body;
-    logoutBtn = document.createElement('button');
-    logoutBtn.id = 'logoutBtn';
-    logoutBtn.className = 'btn';
-    logoutBtn.style.marginTop = '10px';
-    logoutBtn.style.display = 'none';
-    logoutBtn.textContent = 'Uitloggen';
+    const header =
+      document.querySelector("header .header-container") ||
+      document.querySelector("header") ||
+      document.body;
+    logoutBtn = document.createElement("button");
+    logoutBtn.id = "logoutBtn";
+    logoutBtn.className = "btn";
+    logoutBtn.style.marginTop = "10px";
+    logoutBtn.style.display = "none"; // verborgen
+    logoutBtn.textContent = "Uitloggen";
     header.appendChild(logoutBtn);
-    console.log('[gate] logoutBtn aangemaakt');
+    console.log("[gate] logoutBtn aangemaakt");
   }
 
-  let overlay = document.getElementById('gateOverlay');
+  // Controleer of de overlay bestaat.
+  let overlay = document.getElementById("gateOverlay");
   if (!overlay) {
-    overlay = document.createElement('div');
-    overlay.id = 'gateOverlay';
-    overlay.className = 'overlay';
+    overlay = document.createElement("div");
+    overlay.id = "gateOverlay";
+    overlay.className = "overlay";
     document.body.appendChild(overlay);
-    console.log('[gate] gateOverlay aangemaakt');
+    console.log("[gate] gateOverlay aangemaakt");
   }
 
-  if (!overlay.querySelector('.overlay-content')) {
+  // Voeg formulier toe aan overlay.
+  if (!overlay.querySelector(".overlay-content")) {
     overlay.innerHTML = `
       <div class="overlay-content" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
         <h2 id="gateTitle">Welkom, voer uw naam en leefijd om door te gaan</h2>
@@ -42,192 +49,226 @@ document.addEventListener('DOMContentLoaded', () => {
         </form>
       </div>
     `;
-    console.log('[gate] overlay content toegevoegd');
+    console.log("[gate] overlay content toegevoegd");
   }
 
-  const form = document.getElementById('gateForm');
-  const nameInput = document.getElementById('visitorName');
-  const ageInput = document.getElementById('visitorAge');
-  const errorDiv = document.getElementById('gateError');
-  const clearBtn = document.getElementById('clearGate');
+  // Haal verwijzingen naar formulieronderdelen op.
+  const form = document.getElementById("gateForm");
+  const nameInput = document.getElementById("visitorName");
+  const ageInput = document.getElementById("visitorAge");
+  const errorDiv = document.getElementById("gateError");
+  const clearBtn = document.getElementById("clearGate");
 
+  // Toon de overlay
   function showOverlay() {
-    overlay.classList.add('show');
-    overlay.setAttribute('aria-hidden', 'false');
-    nameInput.value = '';
-    ageInput.value = '';
-    if (errorDiv) errorDiv.style.display = 'none';
+    overlay.classList.add("show");
+    overlay.setAttribute("aria-hidden", "false");
+    nameInput.value = "";
+    ageInput.value = "";
+    if (errorDiv) errorDiv.style.display = "none";
     nameInput.focus();
-    console.log('[gate] Overlay getoond');
+    console.log("[gate] Overlay getoond");
   }
+
+  // Verberg de overlay
   function hideOverlay() {
-    overlay.classList.remove('show');
-    overlay.setAttribute('aria-hidden', 'true');
-    if (errorDiv) errorDiv.style.display = 'none';
-    console.log('[gate] Overlay verborgen');
+    overlay.classList.remove("show");
+    overlay.setAttribute("aria-hidden", "true");
+    if (errorDiv) errorDiv.style.display = "none";
+    console.log("[gate] Overlay verborgen");
   }
+
+  // Laat of verberg de logout-knop
   function updateLogoutButton(show) {
-    logoutBtn.style.display = show ? 'inline-block' : 'none';
+    logoutBtn.style.display = show ? "inline-block" : "none";
   }
 
-  // Controle opslag
-  const storedName = localStorage.getItem('visitorName');
-  const storedAge = localStorage.getItem('visitorAge');
-  console.log('[gate] opgeslagen waarden:', { storedName, storedAge });
+  // Haal opgeslagen naam en leeftijd op
+  const storedName = localStorage.getItem("visitorName");
+  const storedAge = localStorage.getItem("visitorAge");
+  console.log("[gate] opgeslagen waarden:", { storedName, storedAge });
 
+  // Bepaal gedrag op basis van opgeslagen waarden
   if (storedName && storedAge) {
     const ageNum = parseInt(storedAge, 10);
     if (Number.isNaN(ageNum)) {
-      localStorage.removeItem('visitorName');
-      localStorage.removeItem('visitorAge');
+      // Ongeldige leeftijd opgeslagen, wis het
+      localStorage.removeItem("visitorName");
+      localStorage.removeItem("visitorAge");
       showOverlay();
       updateLogoutButton(false);
     } else if (ageNum < MIN_AGE) {
-      // verwijder zodat gebruiker later opnieuw kan invoeren
-      console.log(`[gate] opgeslagen leeftijd < ${MIN_AGE} gevonden — verwijderen`);
-      localStorage.removeItem('visitorName');
-      localStorage.removeItem('visitorAge');
+      // Te jong, wis gegevens en toon overlay
+      console.log(
+        `[gate] opgeslagen leeftijd < ${MIN_AGE} gevonden — verwijderen`
+      );
+      localStorage.removeItem("visitorName");
+      localStorage.removeItem("visitorAge");
       showOverlay();
       updateLogoutButton(false);
     } else {
+      // Gegevens geldig, verberg overlay en toon logout-knop
       hideOverlay();
       updateLogoutButton(true);
     }
   } else {
+    // Geen gegevens gevonden, toon overlay
     showOverlay();
     updateLogoutButton(false);
   }
 
-  // Form submit
-  form.addEventListener('submit', (e) => {
+  // Verwerk formulier bij indienen
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
-    if (errorDiv) errorDiv.style.display = 'none';
+    if (errorDiv) errorDiv.style.display = "none";
+
+    // Haal gegevens op uit formulier
     const name = nameInput.value.trim();
     const age = parseInt(ageInput.value, 10);
 
+    // Validatie
     if (!name) {
-      showError('Voer alstublieft uw naam in.');
+      showError("Voer alstublieft uw naam in.");
       return;
     }
     if (!age || age <= 0) {
-      showError('Voer een geldige leeftijd in.');
+      showError("Voer een geldige leeftijd in.");
       return;
     }
 
     console.log(`[gate] Ingevuld: ${name}, Leeftijd: ${age}`);
 
+    // Leeftijd te laag, redirect naar denied.html
     if (age < MIN_AGE) {
-      console.log(`[gate] Leeftijd < ${MIN_AGE} — redirect naar denied.html (geen opslag)`);
-      localStorage.removeItem('visitorName');
-      localStorage.removeItem('visitorAge');
-      window.location.href = 'denied.html';
+      console.log(
+        `[gate] Leeftijd < ${MIN_AGE} — redirect naar denied.html (geen opslag)`
+      );
+      localStorage.removeItem("visitorName");
+      localStorage.removeItem("visitorAge");
+      window.location.href = "denied.html";
       return;
     }
 
-    localStorage.setItem('visitorName', name);
-    localStorage.setItem('visitorAge', String(age));
+    // Gegevens opslaan en doorgaan
+    localStorage.setItem("visitorName", name);
+    localStorage.setItem("visitorAge", String(age));
     hideOverlay();
     updateLogoutButton(true);
   });
 
+  // Voeg functionaliteit toe aan "Wissen" knop
   if (clearBtn) {
-    clearBtn.addEventListener('click', () => {
-      nameInput.value = '';
-      ageInput.value = '';
-      showError('Invoer gewist. Vul opnieuw in en klik Start.');
+    clearBtn.addEventListener("click", () => {
+      nameInput.value = "";
+      ageInput.value = "";
+      showError("Invoer gewist. Vul opnieuw in en klik Start.");
       nameInput.focus();
     });
   }
 
+  // Uitlog-functie
   function logout() {
-    console.log('[gate] Uitloggen — verwijder opgeslagen naam en leeftijd');
-    localStorage.removeItem('visitorName');
-    localStorage.removeItem('visitorAge');
+    console.log("[gate] Uitloggen — verwijder opgeslagen naam en leeftijd");
+    localStorage.removeItem("visitorName");
+    localStorage.removeItem("visitorAge");
     updateLogoutButton(false);
     showOverlay();
   }
-  logoutBtn.addEventListener('click', logout);
 
+  // Koppel uitlogfunctie aan knop
+  logoutBtn.addEventListener("click", logout);
+
+  // Toon foutmeldingen
   function showError(msg) {
     if (!errorDiv) return;
     errorDiv.innerText = msg;
-    errorDiv.style.display = 'block';
+    errorDiv.style.display = "block";
   }
 
-  // Sluit overlay als gebruiker klikt buiten content
-  overlay.addEventListener('click', (ev) => {
+  // Klik op overlay zelf sluit deze niet automatisch
+  overlay.addEventListener("click", (ev) => {
     if (ev.target === overlay) {
-      // don't automatically close — force re-entry required; comment uit als je wil toestaan
-      // hideOverlay();
+      // hideOverlay(); // Uncomment als je overlay wil laten sluiten bij klik buiten formulier
     }
   });
 
   // --- Game tile interactions ---------------------------------------------------------------
-  const grid = document.getElementById('gameGrid');
+
+  // Haal het spelraster op
+  const grid = document.getElementById("gameGrid");
   if (!grid) {
-    console.log('[games] gameGrid niet gevonden — geen tile-logica uitgevoerd');
+    console.log("[games] gameGrid niet gevonden — geen tile-logica uitgevoerd");
     return;
   }
 
+  // Sluit alle geopende reveals
   function closeAllReveals() {
-    grid.querySelectorAll('.reveal').forEach(r => {
-      r.classList.remove('show');
-      r.innerHTML = '';
-      r.setAttribute('aria-hidden', 'true');
+    grid.querySelectorAll(".reveal").forEach((r) => {
+      r.classList.remove("show");
+      r.innerHTML = "";
+      r.setAttribute("aria-hidden", "true");
     });
   }
 
-  grid.querySelectorAll('.game-tile').forEach(tile => {
-    // Zorg dat pointer cursor zichtbaar is
-    tile.style.cursor = 'pointer';
+  // Voeg klikgedrag toe aan elke game-tile
+  grid.querySelectorAll(".game-tile").forEach((tile) => {
+    // Toon pointer bij hover
+    tile.style.cursor = "pointer";
 
-    tile.addEventListener('click', (e) => {
-      // als overlay zichtbaar is (toegang vereist) blokkeer game interactie
-      if (overlay.classList.contains('show')) {
-        showError('Vul eerst naam en leeftijd in om door te gaan.');
+    tile.addEventListener("click", (e) => {
+      // Blokkeer klik als toegangspoort nog zichtbaar is
+      if (overlay.classList.contains("show")) {
+        showError("Vul eerst naam en leeftijd in om door te gaan.");
         return;
       }
 
       e.preventDefault();
       e.stopPropagation();
 
+      // Sluit eerdere reveals
       closeAllReveals();
-      const href = tile.getAttribute('data-href') || '';
-      const name = tile.getAttribute('data-name') || 'Game';
-      const reveal = tile.querySelector('.reveal');
+
+      // Haal link en naam van de tile op
+      const href = tile.getAttribute("data-href") || "";
+      const name = tile.getAttribute("data-name") || "Game";
+      const reveal = tile.querySelector(".reveal");
       if (!reveal) return;
 
-      if (href && href !== '#' && href.trim() !== '') {
-        const a = document.createElement('a');
-        a.className = 'go-link';
+      // Als er een geldige link is, maak een klikbare link aan
+      if (href && href !== "#" && href.trim() !== "") {
+        const a = document.createElement("a");
+        a.className = "go-link";
         a.href = href;
-        a.target = '_self';
-        a.rel = 'noopener noreferrer';
-        a.style.cursor = 'pointer';
+        a.target = "_self";
+        a.rel = "noopener noreferrer";
+        a.style.cursor = "pointer";
         a.textContent = `Ga naar ${name}`;
-        // voorkom dat de klik bubbelt en de reveal direct dichtklapt
-        a.addEventListener('click', (ev) => {
+        // Voorkom bubbelen van klik
+        a.addEventListener("click", (ev) => {
           ev.stopPropagation();
-          // expliciete navigatie als fallback
+          // Navigatie fallback
           window.location.href = a.href;
         });
         reveal.appendChild(a);
-        reveal.classList.add('show');
-        reveal.setAttribute('aria-hidden', 'false');
+        reveal.classList.add("show");
+        reveal.setAttribute("aria-hidden", "false");
       } else {
-        const span = document.createElement('span');
-        span.className = 'go-link disabled';
-        span.textContent = 'Nog niet gelinkt';
+        // Geen geldige link: toon melding
+        const span = document.createElement("span");
+        span.className = "go-link disabled";
+        span.textContent = "Nog niet gelinkt";
         reveal.appendChild(span);
-        reveal.classList.add('show');
-        reveal.setAttribute('aria-hidden', 'false');
+        reveal.classList.add("show");
+        reveal.setAttribute("aria-hidden", "false");
       }
-      tile.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      // Scroll tile in beeld
+      tile.scrollIntoView({ behavior: "smooth", block: "nearest" });
     });
   });
 
-  // klik buiten tiles sluit reveals
-  document.addEventListener('click', (ev) => {
-    if (!ev.target.closest('.game-tile')) closeAllReveals();
+  // Klik buiten een tile sluit alle reveals
+  document.addEventListener("click", (ev) => {
+    if (!ev.target.closest(".game-tile")) closeAllReveals();
   });
 });

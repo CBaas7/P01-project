@@ -6,16 +6,29 @@ let knop1 = document.getElementById("knop1");
 let knop2 = document.getElementById("knop2");
 let knop3 = document.getElementById("knop3");
 let knop4 = document.getElementById("knop4");
-let codeEnQuiz = document.querySelector("h1")
+let codeEnQuiz = document.querySelector("h1");
+let hintElmt = document.querySelector("#hint");
 
 // Variabelen
 let vraagNummer = 1;
 let score = 0;
+let hints = 1;
 
 // Score geven
 function updateScore() {
-  score = score + 1;
+  score++
   scoreTekst.innerHTML = "Score: " + score;
+  if (hints == 0) {
+    hintElmt.innerHTML = ""
+  }
+}
+
+function removeScore() {
+  score--
+  scoreTekst.innerHTML = "Score: " + score;
+  if (hints == 0) {
+    hintElmt.innerHTML = ""
+  }
 }
 
 //Vragen verranderen
@@ -29,6 +42,7 @@ function VraagFout() {
     knop4.innerHTML = "Aarde";
     knop3.setAttribute("onClick", "javascript: VraagCorrect();");
     knop4.setAttribute("onClick", "javascript: VraagFout();");
+    removeScore()
     vraagNummer = 2;
   } else if (vraagNummer == 2) {
     vraag.innerHTML = "Vraag 3";
@@ -39,6 +53,7 @@ function VraagFout() {
     knop4.innerHTML = "Madrid";
     knop2.setAttribute("onClick", "javascript: VraagCorrect();");
     knop3.setAttribute("onClick", "javascript: VraagFout();");
+    removeScore()
     vraagNummer = 3;
   } else if (vraagNummer == 3) {
     vraag.innerHTML = "Vraag 4";
@@ -49,6 +64,7 @@ function VraagFout() {
     knop4.innerHTML = "90";
     knop1.setAttribute("onClick", "javascript: VraagCorrect();");
     knop2.setAttribute("onClick", "javascript: VraagFout();");
+    removeScore()
     vraagNummer = 4;
   } else if (vraagNummer == 4) {
     vraag.innerHTML = "Vraag 5";
@@ -59,6 +75,7 @@ function VraagFout() {
     knop4.innerHTML = "Schildpad";
     knop3.setAttribute("onClick", "javascript: VraagCorrect();");
     knop1.setAttribute("onClick", "javascript: VraagFout();");
+    removeScore()
     vraagNummer = 5;
   } else if (vraagNummer == 5) {
     vraag.innerHTML = "Vraag 6";
@@ -69,6 +86,7 @@ function VraagFout() {
     knop4.innerHTML = "Hollandlied";
     knop1.setAttribute("onClick", "javascript: VraagCorrect();");
     knop3.setAttribute("onClick", "javascript: VraagFout();");
+    removeScore()
     vraagNummer = 6;
   } else if (vraagNummer == 6) {
     vraag.innerHTML = "Vraag 7";
@@ -79,6 +97,7 @@ function VraagFout() {
     knop4.innerHTML = "Loire";
     knop2.setAttribute("onClick", "javascript: VraagCorrect();");
     knop1.setAttribute("onClick", "javascript: VraagFout();");
+    removeScore()
     vraagNummer = 7;
   } else if (vraagNummer == 7) {
     vraag.innerHTML = "Vraag 8";
@@ -89,6 +108,7 @@ function VraagFout() {
     knop4.innerHTML = "Aannemen";
     knop4.setAttribute("onClick", "javascript: VraagCorrect();");
     knop2.setAttribute("onClick", "javascript: VraagFout();");
+    removeScore()
     vraagNummer = 8;
   } else if (vraagNummer == 8) {
     vraag.innerHTML = "Vraag 9";
@@ -99,6 +119,7 @@ function VraagFout() {
     knop4.innerHTML = "360°";
     knop2.setAttribute("onClick", "javascript: VraagCorrect();");
     knop4.setAttribute("onClick", "javascript: VraagFout();");
+    removeScore()
     vraagNummer = 9;
   } else if (vraagNummer == 9) {
     vraag.innerHTML = "Vraag 10";
@@ -107,6 +128,7 @@ function VraagFout() {
     knop2.innerHTML = "Pessimistisch";
     knop3.innerHTML = "Realistisch";
     knop4.innerHTML = "Negatief";
+    removeScore()
     vraagNummer = 10;
   } else if (vraagNummer == 10) {
     vraag.innerHTML = "Vraag 11";
@@ -117,92 +139,106 @@ function VraagFout() {
     knop4.innerHTML = "Methaan";
     knop2.setAttribute("onClick", "javascript: VraagCorrect();");
     knop4.setAttribute("onClick", "javascript: VraagFout();");
+    removeScore()
     vraagNummer = 11;
   } else if (vraagNummer == 11) {
     vraag.innerHTML = "Vraag 12";
-    vraagTekst.innerHTML = "Welke taal wordt voornamelijk gesproken in Brazilië?";
+    vraagTekst.innerHTML =
+      "Welke taal wordt voornamelijk gesproken in Brazilië?";
     knop1.innerHTML = "Spaans";
     knop2.innerHTML = "Portugees";
     knop3.innerHTML = "Frans";
     knop4.innerHTML = "Engels";
+    removeScore()
     vraagNummer = 12;
   } else if (vraagNummer == 12) {
     vraag.innerHTML = "Vraag 13";
-    vraagTekst.innerHTML = "Wat is de grootste oceaan ter wereld?"
+    vraagTekst.innerHTML = "Wat is de grootste oceaan ter wereld?";
     knop1.innerHTML = "Atlantische";
     knop2.innerHTML = "Indische";
     knop3.innerHTML = "Stille ";
     knop4.innerHTML = "Zuidelijke";
     knop3.setAttribute("onClick", "javascript: VraagCorrect();");
     knop2.setAttribute("onClick", "javascript: VraagFout();");
+    removeScore()
     vraagNummer = 13;
   } else if (vraagNummer == 13) {
     vraag.innerHTML = "Vraag 14";
-    vraagTekst.innerHTML = "Welke van deze landen ligt NIET in Europa?"
+    vraagTekst.innerHTML = "Welke van deze landen ligt NIET in Europa?";
     knop1.innerHTML = "Polen";
     knop2.innerHTML = "Noorwegen";
     knop3.innerHTML = "Turkije ";
     knop4.innerHTML = "Brazilië";
     knop4.setAttribute("onClick", "javascript: VraagCorrect();");
     knop3.setAttribute("onClick", "javascript: VraagFout();");
+    removeScore()
     vraagNummer = 14;
   } else if (vraagNummer == 14) {
     vraag.innerHTML = "Vraag 15";
-    vraagTekst.innerHTML = "Wie schilderde de Mona Lisa?"
+    vraagTekst.innerHTML = "Wie schilderde de Mona Lisa?";
     knop1.innerHTML = "Vincent van Gogh";
     knop2.innerHTML = "Pablo Picasso";
     knop3.innerHTML = "Leonardo da Vinci ";
     knop4.innerHTML = "Rembrandt van Rijn";
     knop3.setAttribute("onClick", "javascript: VraagCorrect();");
     knop4.setAttribute("onClick", "javascript: VraagFout();");
+    removeScore()
     vraagNummer = 15;
   } else if (vraagNummer == 15) {
     vraag.innerHTML = "Vraag 16";
-    vraagTekst.innerHTML = "Wat is de hoofdstad van Canada?"
+    vraagTekst.innerHTML = "Wat is de hoofdstad van Canada?";
     knop1.innerHTML = "Ottawa";
     knop2.innerHTML = "Montreal";
     knop3.innerHTML = "Toronto";
     knop4.innerHTML = "Vancouver";
+    removeScore()
     vraagNummer = 16;
   } else if (vraagNummer == 16) {
     vraag.innerHTML = "Vraag 17";
-    vraagTekst.innerHTML = "Welke planeet staat bekend als de rode planeet?"
+    vraagTekst.innerHTML = "Welke planeet staat bekend als de rode planeet?";
     knop1.innerHTML = "Saturnus";
     knop2.innerHTML = "Venus";
     knop3.innerHTML = "Mars";
     knop4.innerHTML = "Jupiter";
+    removeScore()
     vraagNummer = 17;
   } else if (vraagNummer == 17) {
     vraag.innerHTML = "Vraag 18";
-    vraagTekst.innerHTML = "Wat is het chemische symbool voor goud?"
+    vraagTekst.innerHTML = "Wat is het chemische symbool voor goud?";
     knop1.innerHTML = "Fe";
     knop2.innerHTML = "Pb";
     knop3.innerHTML = "Au";
     knop4.innerHTML = "Ag";
+    removeScore()
     vraagNummer = 18;
   } else if (vraagNummer == 18) {
     vraag.innerHTML = "Vraag 19";
-    vraagTekst.innerHTML = "Welke stof zorgt voor de groene kleur in planten?"
+    vraagTekst.innerHTML = "Welke stof zorgt voor de groene kleur in planten?";
     knop1.innerHTML = "Chlorofyl";
     knop2.innerHTML = "Glucose";
     knop3.innerHTML = "Zuurstof";
     knop4.innerHTML = "Cellulose";
     knop1.setAttribute("onClick", "javascript: VraagCorrect();");
     knop3.setAttribute("onClick", "javascript: VraagFout();");
+    removeScore()
     vraagNummer = 19;
   } else if (vraagNummer == 19) {
     vraag.innerHTML = "Vraag 20";
-    vraagTekst.innerHTML = "Wat is de langste rivier ter wereld?"
+    vraagTekst.innerHTML = "Wat is de langste rivier ter wereld?";
     knop1.innerHTML = "Amazone";
     knop2.innerHTML = "Nijl";
     knop3.style.display = "none";
     knop4.style.display = "none";
+    removeScore()
     vraagNummer = 20;
   } else if (vraagNummer == 20) {
-    vraag.innerHTML = "Quiz klaar"
-    let statshalf = score / 20
-    let statsfull = statshalf * 100
-    vraagTekst.innerHTML = "Je hebt alle 20 vragen beantwoord hiervan heb jij " + statsfull + "% goed"
+    vraag.innerHTML = "Quiz klaar";
+    let statshalf = score / 20;
+    let statsfull = statshalf * 100;
+    vraagTekst.innerHTML =
+      "Je hebt alle 20 vragen beantwoord hiervan heb jij " +
+      statsfull +
+      "% goed";
     knop1.style.display = "none";
     knop2.style.display = "none";
     document.querySelector("main > a").style.display = "block";
@@ -220,7 +256,7 @@ function VraagCorrect() {
     knop4.innerHTML = "Aarde";
     knop3.setAttribute("onClick", "javascript: VraagCorrect();");
     knop4.setAttribute("onClick", "javascript: VraagFout();");
-    updateScore()
+    updateScore();
     vraagNummer = 2;
   } else if (vraagNummer == 2) {
     vraag.innerHTML = "Vraag 3";
@@ -231,7 +267,7 @@ function VraagCorrect() {
     knop4.innerHTML = "Madrid";
     knop2.setAttribute("onClick", "javascript: VraagCorrect();");
     knop3.setAttribute("onClick", "javascript: VraagFout();");
-    updateScore()
+    updateScore();
     vraagNummer = 3;
   } else if (vraagNummer == 3) {
     vraag.innerHTML = "Vraag 4";
@@ -242,7 +278,7 @@ function VraagCorrect() {
     knop4.innerHTML = "90";
     knop1.setAttribute("onClick", "javascript: VraagCorrect();");
     knop2.setAttribute("onClick", "javascript: VraagFout();");
-    updateScore()
+    updateScore();
     vraagNummer = 4;
   } else if (vraagNummer == 4) {
     vraag.innerHTML = "Vraag 5";
@@ -253,7 +289,7 @@ function VraagCorrect() {
     knop4.innerHTML = "Schildpad";
     knop3.setAttribute("onClick", "javascript: VraagCorrect();");
     knop1.setAttribute("onClick", "javascript: VraagFout();");
-    updateScore()
+    updateScore();
     vraagNummer = 5;
   } else if (vraagNummer == 5) {
     vraag.innerHTML = "Vraag 6";
@@ -264,7 +300,7 @@ function VraagCorrect() {
     knop4.innerHTML = "Hollandlied";
     knop1.setAttribute("onClick", "javascript: VraagCorrect();");
     knop3.setAttribute("onClick", "javascript: VraagFout();");
-    updateScore()
+    updateScore();
     vraagNummer = 6;
   } else if (vraagNummer == 6) {
     vraag.innerHTML = "Vraag 7";
@@ -275,7 +311,7 @@ function VraagCorrect() {
     knop4.innerHTML = "Loire";
     knop2.setAttribute("onClick", "javascript: VraagCorrect();");
     knop1.setAttribute("onClick", "javascript: VraagFout();");
-    updateScore()
+    updateScore();
     vraagNummer = 7;
   } else if (vraagNummer == 7) {
     vraag.innerHTML = "Vraag 8";
@@ -286,7 +322,7 @@ function VraagCorrect() {
     knop4.innerHTML = "Aannemen";
     knop4.setAttribute("onClick", "javascript: VraagCorrect();");
     knop2.setAttribute("onClick", "javascript: VraagFout();");
-    updateScore()
+    updateScore();
     vraagNummer = 8;
   } else if (vraagNummer == 8) {
     vraag.innerHTML = "Vraag 9";
@@ -297,7 +333,7 @@ function VraagCorrect() {
     knop4.innerHTML = "360°";
     knop2.setAttribute("onClick", "javascript: VraagCorrect();");
     knop4.setAttribute("onClick", "javascript: VraagFout();");
-    updateScore()
+    updateScore();
     vraagNummer = 9;
   } else if (vraagNummer == 9) {
     vraag.innerHTML = "Vraag 10";
@@ -306,7 +342,7 @@ function VraagCorrect() {
     knop2.innerHTML = "Pessimistisch";
     knop3.innerHTML = "Realistisch";
     knop4.innerHTML = "Negatief";
-    updateScore()
+    updateScore();
     vraagNummer = 10;
   } else if (vraagNummer == 10) {
     vraag.innerHTML = "Vraag 11";
@@ -317,103 +353,107 @@ function VraagCorrect() {
     knop4.innerHTML = "Methaan";
     knop2.setAttribute("onClick", "javascript: VraagCorrect();");
     knop4.setAttribute("onClick", "javascript: VraagFout();");
-    updateScore()
+    updateScore();
     vraagNummer = 11;
   } else if (vraagNummer == 11) {
     vraag.innerHTML = "Vraag 12";
-    vraagTekst.innerHTML = "Welke taal wordt voornamelijk gesproken in Brazilië?";
+    vraagTekst.innerHTML =
+      "Welke taal wordt voornamelijk gesproken in Brazilië?";
     knop1.innerHTML = "Spaans";
     knop2.innerHTML = "Portugees";
     knop3.innerHTML = "Frans";
     knop4.innerHTML = "Engels";
-    updateScore()
+    updateScore();
     vraagNummer = 12;
   } else if (vraagNummer == 12) {
     vraag.innerHTML = "Vraag 13";
-    vraagTekst.innerHTML = "Wat is de grootste oceaan ter wereld?"
+    vraagTekst.innerHTML = "Wat is de grootste oceaan ter wereld?";
     knop1.innerHTML = "Atlantische";
     knop2.innerHTML = "Indische";
     knop3.innerHTML = "Stille ";
     knop4.innerHTML = "Zuidelijke";
     knop3.setAttribute("onClick", "javascript: VraagCorrect();");
     knop2.setAttribute("onClick", "javascript: VraagFout();");
-    updateScore()
+    updateScore();
     vraagNummer = 13;
   } else if (vraagNummer == 13) {
     vraag.innerHTML = "Vraag 14";
-    vraagTekst.innerHTML = "Welke van deze landen ligt NIET in Europa?"
+    vraagTekst.innerHTML = "Welke van deze landen ligt NIET in Europa?";
     knop1.innerHTML = "Polen";
     knop2.innerHTML = "Noorwegen";
     knop3.innerHTML = "Turkije ";
     knop4.innerHTML = "Brazilië";
     knop4.setAttribute("onClick", "javascript: VraagCorrect();");
     knop3.setAttribute("onClick", "javascript: VraagFout();");
-    updateScore()
+    updateScore();
     vraagNummer = 14;
   } else if (vraagNummer == 14) {
     vraag.innerHTML = "Vraag 15";
-    vraagTekst.innerHTML = "Wie schilderde de Mona Lisa?"
+    vraagTekst.innerHTML = "Wie schilderde de Mona Lisa?";
     knop1.innerHTML = "Vincent van Gogh";
     knop2.innerHTML = "Pablo Picasso";
     knop3.innerHTML = "Leonardo da Vinci ";
     knop4.innerHTML = "Rembrandt van Rijn";
     knop3.setAttribute("onClick", "javascript: VraagCorrect();");
     knop4.setAttribute("onClick", "javascript: VraagFout();");
-    updateScore()
+    updateScore();
     vraagNummer = 15;
   } else if (vraagNummer == 15) {
     vraag.innerHTML = "Vraag 16";
-    vraagTekst.innerHTML = "Wat is de hoofdstad van Canada?"
+    vraagTekst.innerHTML = "Wat is de hoofdstad van Canada?";
     knop1.innerHTML = "Ottawa";
     knop2.innerHTML = "Montreal";
     knop3.innerHTML = "Toronto";
     knop4.innerHTML = "Vancouver";
-    updateScore()
+    updateScore();
     vraagNummer = 16;
   } else if (vraagNummer == 16) {
     vraag.innerHTML = "Vraag 17";
-    vraagTekst.innerHTML = "Welke planeet staat bekend als de rode planeet?"
+    vraagTekst.innerHTML = "Welke planeet staat bekend als de rode planeet?";
     knop1.innerHTML = "Saturnus";
     knop2.innerHTML = "Venus";
     knop3.innerHTML = "Mars";
     knop4.innerHTML = "Jupiter";
-    updateScore()
+    updateScore();
     vraagNummer = 17;
   } else if (vraagNummer == 17) {
     vraag.innerHTML = "Vraag 18";
-    vraagTekst.innerHTML = "Wat is het chemische symbool voor goud?"
+    vraagTekst.innerHTML = "Wat is het chemische symbool voor goud?";
     knop1.innerHTML = "Fe";
     knop2.innerHTML = "Pb";
     knop3.innerHTML = "Au";
     knop4.innerHTML = "Ag";
-    updateScore()
+    updateScore();
     vraagNummer = 18;
   } else if (vraagNummer == 18) {
     vraag.innerHTML = "Vraag 19";
-    vraagTekst.innerHTML = "Welke stof zorgt voor de groene kleur in planten?"
+    vraagTekst.innerHTML = "Welke stof zorgt voor de groene kleur in planten?";
     knop1.innerHTML = "Chlorofyl";
     knop2.innerHTML = "Glucose";
     knop3.innerHTML = "Zuurstof";
     knop4.innerHTML = "Cellulose";
     knop1.setAttribute("onClick", "javascript: VraagCorrect();");
     knop3.setAttribute("onClick", "javascript: VraagFout();");
-    updateScore()
+    updateScore();
     vraagNummer = 19;
   } else if (vraagNummer == 19) {
     vraag.innerHTML = "Vraag 20";
-    vraagTekst.innerHTML = "Wat is de langste rivier ter wereld?"
+    vraagTekst.innerHTML = "Wat is de langste rivier ter wereld?";
     knop1.innerHTML = "Amazone";
     knop2.innerHTML = "Nijl";
     knop3.style.display = "none";
     knop4.style.display = "none";
-    updateScore()
+    updateScore();
     vraagNummer = 20;
   } else if (vraagNummer == 20) {
-    updateScore()
-    vraag.innerHTML = "Quiz klaar"
-    let statshalf = score / 20
-    let statsfull = statshalf * 100
-    vraagTekst.innerHTML = "Je hebt alle 20 vragen beantwoord hiervan heb jij " + statsfull + "% goed"
+    updateScore();
+    vraag.innerHTML = "Quiz klaar";
+    let statshalf = score / 20;
+    let statsfull = statshalf * 100;
+    vraagTekst.innerHTML =
+      "Je hebt alle 20 vragen beantwoord hiervan heb jij " +
+      statsfull +
+      "% goed";
     knop1.style.display = "none";
     knop2.style.display = "none";
     document.querySelector("main > a").style.display = "block";
@@ -421,6 +461,56 @@ function VraagCorrect() {
 }
 
 // easteregg
-codeEnQuiz.addEventListener("click", function() {
-  alert("Code&Quiz")
-})
+codeEnQuiz.addEventListener("click", function () {
+  alert("Code&Quiz");
+});
+
+hintElmt.addEventListener("click", function () {
+  if (hints == 1) {
+    console.log("hint gebruikt");
+    hints--;
+    if (vraagNummer == 1) {
+      hintElmt.innerHTML = "Deze planeet heeft een grote rode vlek die altijd stormt."
+    } else if (vraagNummer == 2) {
+      hintElmt.innerHTML = "Deze planeet is heet overdag, ijskoud ’s nachts."
+    } else if (vraagNummer == 3) {
+      hintElmt.innerHTML = "In deze stad staat een toren die iedereen kent."
+    } else if (vraagNummer == 4) {
+      hintElmt.innerHTML = "Je leert dit al in groep 3."
+    } else if (vraagNummer == 5) {
+      hintElmt.innerHTML = "Zoogdieren geven melk aan hun jongen en ademen lucht, zelfs als ze in het water leven."
+    } else if (vraagNummer == 6) {
+      hintElmt.innerHTML = "De naam lijkt op die van Willem van Oranje."
+    } else if (vraagNummer == 7) {
+      hintElmt.innerHTML = "Hint vraag 7"
+    } else if (vraagNummer == 8) {
+      hintElmt.innerHTML = "Hint vraag 8"
+    } else if (vraagNummer == 9) {
+      hintElmt.innerHTML = "Hint vraag 9"
+    } else if (vraagNummer == 10) {
+      hintElmt.innerHTML = "Hint vraag 10"
+    } else if (vraagNummer == 11) {
+      hintElmt.innerHTML = "Hint vraag 11"
+    } else if (vraagNummer == 12) {
+      hintElmt.innerHTML = "Hint vraag 12"
+    } else if (vraagNummer == 13) {
+      hintElmt.innerHTML = "Hint vraag 13"
+    } else if (vraagNummer == 14) {
+      hintElmt.innerHTML = "Hint vraag 14"
+    } else if (vraagNummer == 15) {
+      hintElmt.innerHTML = "Hint vraag 15"
+    } else if (vraagNummer == 16) {
+      hintElmt.innerHTML = "Hint vraag 16"
+    } else if (vraagNummer == 17) {
+      hintElmt.innerHTML = "Hint vraag 17"
+    } else if (vraagNummer == 18) {
+      hintElmt.innerHTML = "Hint vraag 18"
+    } else if (vraagNummer == 19) {
+      hintElmt.innerHTML = "Hint vraag 19"
+    } else if (vraagNummer == 20) {
+      hintElmt.innerHTML = "Hint vraag 20"
+    }
+  } else {
+    console.log("Je hebt geen hints blud");
+  }
+});
