@@ -313,16 +313,16 @@ if (superpowerBtn) {
 }
 
 function superpower() {
-    if (superpowerUsed) {
-        return;
-    }
+  if (superpowerUsed) {
+    button.style.display = "none";
+  }
 
     const question = questions[currentQuestionIndex];
     const optionButtons = Array.from(document.querySelectorAll(".option"));
     const incorrectButtons = optionButtons.filter((_, index) => index !== question.answer);
 
     const buttonsToHide = incorrectButtons
-        .sort(() => Math.random() - 0.5)
+        .sort(() => Math.random() - 0.5) 
         .slice(0, Math.min(2, incorrectButtons.length));
 
     buttonsToHide.forEach(button => {
