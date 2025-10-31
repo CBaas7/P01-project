@@ -1,0 +1,108 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+   background: linear-gradient(#1b4d7b, #99bbdd);
+   margin-top: 100px; /* zorgt dat de header niet onder het logo valt */
+
+}
+
+
+
+/*  Titel Sport&Quizz */
+header {
+    background-color: #3c88d0;
+    font-size: 36px;
+    font-weight: bold;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 20px;
+    color: rgb(255, 255, 255);
+    font-family: cursive;
+    gap: 15px;
+}
+
+
+
+/* tot hier */
+
+.Antwoorden button {
+    background: linear-gradient(#1e4e79, #6ba8e4);
+    border: none;
+    border-radius: 50px;
+    padding: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    height: 75px;
+    width: 100%;
+    color: white;
+    cursor: pointer;
+
+}
+
+.Antwoorden {
+    text-align: center;
+    display: grid;
+    gap:80px;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 auto;
+    margin-top: 70px;
+    max-width: 800px;
+}
+
+/*  dit is vraag komt hier */
+.Vraag-box {
+    background: linear-gradient(#064f92, #6ba8e4); 
+    padding: 20px;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 35px;
+    text-align: center;
+    margin: 0 auto;
+    width: 900px;
+    color: white;
+   font-family: cursive;
+}
+
+/* tot hier */
+
+/*  vooruitgangs balk */
+.progress {
+    background: linear-gradient(#9dc5eb, #ffffff);
+    padding: 12px;
+    border-radius: 12px;
+    margin: 20px auto;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    width: 40%;
+     font-family: 'Franklin Gothic Medium';
+}
+/* tot hier */
+
+/*  dit is de knoppen terug en volgende */
+.navigatie-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.navigatie-buttons button {
+    background: #14487b;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* tot hier is het  */
