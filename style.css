@@ -254,7 +254,7 @@ footer a:hover {
   border-radius:8px;
   text-decoration:none;
   font-size: 20px;
-  border-color: #111;  /* ...existing code... */
+  border-color: #111;  
   
   /* Zorg dat footer altijd onderaan staat */
   html, body {
@@ -272,7 +272,7 @@ footer a:hover {
     padding: 40px 16px 80px;
   }
   
-  /* maak footer compact en vast onderaan (niet fixed) */
+  /* maak footer compact en vast onderaan */
   footer {
     margin-top: 0;
     padding: 18px 12px;
@@ -282,5 +282,9 @@ footer a:hover {
     flex-shrink: 0;
   }
   
-  /* ...existing code... */
+
+}
+
+h2{
+  color: black;
 }

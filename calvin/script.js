@@ -1,3 +1,4 @@
+// Centrale dataset met alle quizvragen per onderwerp.
 const questions = [
 
     // HTML (1-7)
@@ -208,10 +209,22 @@ const questions = [
 
 ];
 
+// Houd bij welke vraag momenteel getoond wordt.
 let currentQuestionIndex = 0;
+
+// Bewaart het aantal goed beantwoorde vragen.
 let score = 0;
+
+// Zorgt dat de superkracht maar één keer actief is.
 let superpowerUsed = false;
 
+// Telt hoe vaak de superkracht in deze quiz is ingezet.
+let superpowerUses = 0;
+
+// Maximale aantal keren dat de superkracht beschikbaar is.
+const maxSuperPowerUses = 3;
+
+// Toont de actieve vraag en reset de antwoordopties.
 function displayQuestion() {
     const questionElement = document.getElementById("question");
     const optionsButtons = document.querySelectorAll(".option");
@@ -231,16 +244,19 @@ function displayQuestion() {
 
     superpowerUsed = false;
     if (superpowerBtn) {
-        superpowerBtn.disabled = false;
+        superpowerBtn.disabled = superpowerUses >= maxSuperPowerUses;
     }
 }
 
 
 
+// Verwerkt een gekozen antwoord en werkt de score bij.
 function selectAwnser(selectedOptionIndex) {
+    // Haal de huidige vraag op en verzamel alle knoppen.
     const question = questions[currentQuestionIndex];
     const optionsButtons = document.querySelectorAll('.option');
 
+    // Controleer of het gekozen antwoord juist is en geef visuele feedback.
     if (selectedOptionIndex === question.answer) {
         score++;
         optionsButtons[selectedOptionIndex].classList.add("correct");
@@ -249,11 +265,19 @@ function selectAwnser(selectedOptionIndex) {
         optionsButtons[question.answer].classList.add("correct");
     }
 
+    // Werk de scoreweergave bij en blokkeer verdere interactie.
     document.getElementById("score").textContent = `Score: ${score}`;
     optionsButtons.forEach(button => button.disabled = true);
+
+    // Deactiveer de superpower-knop zodra er een antwoord is gekozen.
+    if (superpowerBtn) {
+        superpowerBtn.disabled = true;
+        superpowerUsed = true;
+    }
 }
 
 
+// Verschuift naar de volgende vraag of eindigt de quiz.
 function nextQuestion() {
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
@@ -265,6 +289,7 @@ function nextQuestion() {
 
 
 
+// Laat de eindscore zien en schakelt naar de herkans-knop.
 function endQuiz() {
     const questionElement = document.getElementById("question");
     const optionsButtons = document.querySelectorAll(".option");
@@ -289,10 +314,11 @@ function endQuiz() {
     document.getElementById("retake-btn").style.display = "inline";
 }
 
+// Zet de quiz terug naar het begin voor een herkansing.
 function retakeQuiz() {
     score = 0;
     currentQuestionIndex = 0;
-
+    superpowerUses = 0;
 
     document.getElementById("score").textContent = `Score: ${score}`;
 
@@ -304,32 +330,41 @@ function retakeQuiz() {
     displayQuestion();
 }
 
+// Zoek de superkracht-knop in de pagina.
 const superpowerBtn = document.getElementById("superpower-btn");
 if (superpowerBtn) {
+    // Activeer de superkracht wanneer de gebruiker klikt.
     superpowerBtn.addEventListener("click", superpower);
 }
 
+// Verbergt willekeurig twee foutieve opties zodat raden makkelijker wordt.
 function superpower() {
-    if (superpowerUsed) {
-        button.style.display = "none";
+    if (superpowerUsed || superpowerUses >= maxSuperPowerUses) {
+        // Overslaan wanneer de superkracht al gebruikt is of de limiet op is.
+        return;
     }
 
+    // Verzamel de huidige vraag en alle antwoordknoppen.
     const question = questions[currentQuestionIndex];
     const optionButtons = Array.from(document.querySelectorAll(".option"));
     const incorrectButtons = optionButtons.filter((_, index) => index !== question.answer);
 
+    // Shuffle de foute antwoorden en selecteer er maximaal twee.
     const buttonsToHide = incorrectButtons
         .sort(() => Math.random() - 0.5)
         .slice(0, Math.min(2, incorrectButtons.length));
 
+    // Maak de geselecteerde knoppen onzichtbaar en deactiveer de superkracht.
     buttonsToHide.forEach(button => {
         button.style.display = "none";
     });
 
+    superpowerUses++;
     superpowerUsed = true;
     superpowerBtn.disabled = true;
 }
 
 
 
+// Start de quiz zodra de pagina klaar is.
 window.onload = displayQuestion;
