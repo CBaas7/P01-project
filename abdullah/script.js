@@ -2,7 +2,7 @@
 const vragen = [
     {
         vraag: "Welke sport wordt gespeeld op Wimbledon?",
-        antwoorden: ["Voetbal", "Tennis", "Hockey", "Basketbal"],  
+        antwoorden: ["Voetbal", "Tennis", "Hockey", "Basketbal"],
         correct: 1 // Tennis
     },
     {
@@ -102,36 +102,69 @@ const vragen = [
     }
 ];
 
+// dit zijn de variabelen
+let huidigeVraag = 0; // welke vraag je nu hebt
+let score = 0;        // hoeveel je er goed hebt
+let fiftyCount = 3;   // 3x 50/50 power-up
+let gekozen = false;  // voorkomt verdergaan zonder kiezen
 
-let huidigeVraag = 0;
-let score = 0;
-
-// HTML elementen
+// HTML elementen koppelen
 const vraagBox = document.getElementById("Antwoordt");
 const antwoordKnoppen = document.querySelectorAll(".Antwoorden button");
 const progress = document.getElementById("progress");
+const volgendeBtn = document.getElementById("volgendeBtn");
+const terugBtn = document.getElementById("terugBtn");
+const opnieuwBtn = document.getElementById("opnieuwBtn");
+const fiftyBtn = document.getElementById("fifty");
+const homeBtn = document.getElementById("homeBtn");
 
 // Vraag laden
+
 function laadVraag() {
     const q = vragen[huidigeVraag];
+    vraagBox.style.backgroundColor = "#A7C1A8"; // blijft altijd dezelfde kleur
     vraagBox.textContent = q.vraag;
+    gekozen = false;
+    volgendeBtn.disabled = true;
+
+    // antwoorden zichtbaar maken
     antwoordKnoppen.forEach((btn, index) => {
+        btn.style.visibility = "visible";
+        btn.style.background = "#819A91"; // knopkleur
         btn.textContent = q.antwoorden[index];
-        btn.onclick = () => checkAntwoord(index);
+        btn.onclick = () => selectAntwoord(index);
     });
+
     updateProgress();
 }
 
-// Antwoord checken
-function checkAntwoord(index) {
-    if (index === vragen[huidigeVraag].correct) {
+// Antwoord kiezen
+function selectAntwoord(index) {
+    gekozen = true;
+    const juist = vragen[huidigeVraag].correct;
+
+    // score verhogen als het goed is
+    if (index === juist) {
         score++;
     }
-    volgendeVraag();
+
+    // alleen knoppen kleuren, vraag-box blijft hetzelfde
+    antwoordKnoppen.forEach((btn, i) => {
+        if (i === juist) {
+            btn.style.background = "green"; // juiste antwoord groen
+        } else if (i === index && index !== juist) {
+            btn.style.background = "red"; // fout gekozen rood
+        } else {
+            btn.style.background = "#819A91"; // andere blijven normaal
+        }
+    });
+
+    volgendeBtn.disabled = false;
 }
 
 // Volgende vraag
 function volgendeVraag() {
+    if (!gekozen) return alert("Kies eerst een antwoord!");
     if (huidigeVraag < vragen.length - 1) {
         huidigeVraag++;
         laadVraag();
@@ -139,6 +172,7 @@ function volgendeVraag() {
         toonResultaat();
     }
 }
+
 
 // Terug naar vorige vraag
 function terugVraag() {
@@ -148,32 +182,64 @@ function terugVraag() {
     }
 }
 
+// Power-up 50/50
+function gebruikFifty() {
+    if (fiftyCount > 0) {
+        fiftyCount--;
+        fiftyBtn.textContent = `50/50 (${fiftyCount}x)`;
+        const juist = vragen[huidigeVraag].correct;
+        let verwijderd = 0;
+
+        while (verwijderd < 2) {
+            const rand = Math.floor(Math.random() * 4);
+            if (rand !== juist && antwoordKnoppen[rand].style.visibility !== "hidden") {
+                antwoordKnoppen[rand].style.visibility = "hidden";
+                verwijderd++;
+            }
+        }
+
+        if (fiftyCount === 0) fiftyBtn.disabled = true;
+    } else {
+        alert("Je hebt geen 50/50 power-ups meer!");
+    }
+}
+
+// Opnieuw spelen
+function opNieuwSpelen() {
+    huidigeVraag = 0;
+    score = 0;
+    fiftyCount = 3;
+    fiftyBtn.textContent = "50/50 (3x)";
+    fiftyBtn.disabled = false;
+    laadVraag();
+}
+
+
+// Naar homepagina
+//function gaNaarHome() {
+  //  window.location.href = "index.html"; // pas aan naar jouw homepage
+
+
+
 // Voortgang bijwerken
 function updateProgress() {
     progress.textContent = `Vraag ${huidigeVraag + 1} van ${vragen.length} | Score: ${score}`;
 }
 
-// Resultaat tonen
+// Eindresultaat
 function toonResultaat() {
-    vraagBox.textContent = `Quiz klaar! Je score: ${score} van de ${vragen.length}`;
+    vraagBox.textContent = `Klaar! Je score = ${score} van de ${vragen.length}`;
     document.querySelector(".Antwoorden").innerHTML = "";
     document.querySelector(".navigatie-buttons").innerHTML = "";
+    fiftyBtn.disabled = true;
 }
 
 // Start quiz
 laadVraag();
 
-// Zorg dat knoppen werken
-document.querySelector(".navigatie-buttons button:first-child").onclick = terugVraag;
-document.querySelector(".navigatie-buttons button:last-child").onclick = volgendeVraag;
-
-
-
-function opNieuwSpelen(){
-
-
-    
-
-
-
-}
+// Knoppen werkend maken
+volgendeBtn.onclick = volgendeVraag;
+terugBtn.onclick = terugVraag;
+opnieuwBtn.onclick = opNieuwSpelen;
+fiftyBtn.onclick = gebruikFifty;
+homeBtn.onclick = gaNaarHome;
