@@ -28,7 +28,7 @@ const vragen = [
     {
         vraag: "Welke sport wordt vaak 'the beautiful game' genoemd?",
         antwoorden: ["Tennis", "Basketbal", "Voetbal", "Rugby"],
-        correct: 2 // Voetbal
+        correct: 3 // rugby
     },
     {
         vraag: "In welke sport kun je een strike gooien?",
