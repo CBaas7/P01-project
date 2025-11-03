@@ -272,3 +272,17 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!ev.target.closest(".game-tile")) closeAllReveals();
   });
 });
+
+// Verwijder opgeslagen gegevens bij afsluiten pagina
+window.addEventListener('unload', () => {
+    localStorage.removeItem('visitorName');
+    localStorage.removeItem('visitorAge');
+    console.log('[gate] Opgeslagen gegevens verwijderd bij afsluiten');
+});
+
+// Of gebruik beforeunload voor een iets vroeger moment
+window.addEventListener('beforeunload', () => {
+    localStorage.removeItem('visitorName');
+    localStorage.removeItem('visitorAge');
+    console.log('[gate] Opgeslagen gegevens verwijderd voor afsluiten');
+});
