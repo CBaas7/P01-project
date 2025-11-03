@@ -12,24 +12,20 @@ let hintElmt = document.querySelector("#hint");
 // Variabelen
 let vraagNummer = 1;
 let score = 0;
-let hints = 1;
+let hints = 3;
 
 // Score geven
 function updateScore() {
   score++
   scoreTekst.innerHTML = "Score: " + score;
-  if (hints == 0) {
-    hintElmt.innerHTML = ""
-  }
+  hintElmt = "Hints:", hints
 }
 
 function removeScore() {
   score--
   scoreTekst.innerHTML = "Score: " + score;
-  if (hints == 0) {
-    hintElmt.innerHTML = ""
+  hintElmt.innerHTML = "Hints:" + hints
   }
-}
 
 //Vragen verranderen
 function VraagFout() {
@@ -466,7 +462,7 @@ codeEnQuiz.addEventListener("click", function () {
 });
 
 hintElmt.addEventListener("click", function () {
-  if (hints == 1) {
+  if (hints >= 1) {
     console.log("hint gebruikt");
     hints--;
     if (vraagNummer == 1) {
@@ -482,35 +478,34 @@ hintElmt.addEventListener("click", function () {
     } else if (vraagNummer == 6) {
       hintElmt.innerHTML = "De naam lijkt op die van Willem van Oranje."
     } else if (vraagNummer == 7) {
-      hintElmt.innerHTML = "Hint vraag 7"
+      hintElmt.innerHTML = "Het is de beroemdste rivier van Frankrijk."
     } else if (vraagNummer == 8) {
-      hintElmt.innerHTML = "Hint vraag 8"
+      hintElmt.innerHTML = "Het is een ander woord voor een voorzichtige aanname, vaak zonder bewijs."
     } else if (vraagNummer == 9) {
-      hintElmt.innerHTML = "Hint vraag 9"
+      hintElmt.innerHTML = "Het is precies een kwart van een volledige cirkel."
     } else if (vraagNummer == 10) {
-      hintElmt.innerHTML = "Hint vraag 10"
+      hintElmt.innerHTML = "Wat is het tegenovergestelde van “optimistisch”?"
     } else if (vraagNummer == 11) {
-      hintElmt.innerHTML = "Hint vraag 11"
+      hintElmt.innerHTML = "Planten halen het uit de lucht via hun bladeren."
     } else if (vraagNummer == 12) {
-      hintElmt.innerHTML = "Hint vraag 12"
+      hintElmt.innerHTML = "Het is een Romaanse taal die ook in Portugal wordt gesproken."
     } else if (vraagNummer == 13) {
-      hintElmt.innerHTML = "Hint vraag 13"
+      hintElmt.innerHTML = "Het ligt tussen Azië en Amerika."
     } else if (vraagNummer == 14) {
-      hintElmt.innerHTML = "Hint vraag 14"
+      hintElmt.innerHTML = "Eén van deze landen ligt niet in Europa, maar op een ander continent."
     } else if (vraagNummer == 15) {
-      hintElmt.innerHTML = "Hint vraag 15"
+      hintElmt.innerHTML = "Deze Italiaanse kunstenaar was ook een uitvinder en wetenschapper in de Renaissance."
     } else if (vraagNummer == 16) {
-      hintElmt.innerHTML = "Hint vraag 16"
+      hintElmt.innerHTML = "Deze stad ligt in de provincie Ontario en is niet Toronto."
     } else if (vraagNummer == 17) {
-      hintElmt.innerHTML = "Hint vraag 17"
+      hintElmt.innerHTML = "Deze planeet heeft zijn bijnaam te danken aan het ijzerrijke stof op het oppervlak, dat een roodachtige kleur geeft."
     } else if (vraagNummer == 18) {
-      hintElmt.innerHTML = "Hint vraag 18"
+      hintElmt.innerHTML = "Het symbool komt van het Latijnse woord aurum."
     } else if (vraagNummer == 19) {
-      hintElmt.innerHTML = "Hint vraag 19"
+      hintElmt.innerHTML = "Deze stof zit in de bladgroenkorrels en vangt zonlicht op voor fotosynthese."
     } else if (vraagNummer == 20) {
-      hintElmt.innerHTML = "Hint vraag 20"
+      hintElmt.innerHTML = "Deze rivier stroomt door het Amazonegebied in Zuid-Amerika."
     }
   } else {
-    console.log("Je hebt geen hints blud");
   }
 });
