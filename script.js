@@ -1,3 +1,142 @@
+// Toegangscontrole: naam + leeftijd (redirect naar denied.html bij <16)
+// Verbeterd logout gedrag: altijd event listener, duidelijke show/hide helpers en form reset
+
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('[gate] script geladen');
+
+  const overlay = document.getElementById('gateOverlay');
+  const form = document.getElementById('gateForm');
+  const nameInput = document.getElementById('visitorName');
+  const ageInput = document.getElementById('visitorAge');
+  const errorDiv = document.getElementById('gateError');
+  const clearBtn = document.getElementById('clearGate');
+  const logoutBtn = document.getElementById('logoutBtn');
+
+  if (!overlay || !form || !nameInput || !ageInput) {
+    console.error('[gate] Vereiste elementen niet gevonden in DOM. Controleer index.html.');
+    return;
+  }
+
+  function showOverlay() {
+    overlay.style.display = 'flex';
+    overlay.setAttribute('aria-hidden', 'false');
+    nameInput.value = '';
+    ageInput.value = '';
+    errorDiv.style.display = 'none';
+    nameInput.focus();
+    console.log('[gate] Overlay getoond');
+  }
+
+  function hideOverlay() {
+    overlay.style.display = 'none';
+    overlay.setAttribute('aria-hidden', 'true');
+    errorDiv.style.display = 'none';
+    console.log('[gate] Overlay verborgen');
+  }
+
+  function updateLogoutButton(show) {
+    if (!logoutBtn) return;
+    logoutBtn.style.display = show ? 'inline-block' : 'none';
+  }
+
+  // Controleer opslag
+  const storedName = localStorage.getItem('visitorName');
+  const storedAge = localStorage.getItem('visitorAge');
+  console.log('[gate] opgeslagen waarden:', { storedName, storedAge });
+
+  if (storedName && storedAge) {
+    const ageNum = parseInt(storedAge, 10);
+    if (Number.isNaN(ageNum)) {
+      localStorage.removeItem('visitorName');
+      localStorage.removeItem('visitorAge');
+      showOverlay();
+      updateLogoutButton(false);
+    } else if (ageNum < 16) {
+      console.log('[gate] Leeftijd < 16 — redirect naar denied.html');
+      window.location.href = 'denied.html';
+      return;
+    } else {
+      hideOverlay();
+      updateLogoutButton(true);
+    }
+  } else {
+    // geen opgeslagen gegevens: toon overlay en verberg logout
+    showOverlay();
+    updateLogoutButton(false);
+  }
+
+  // Form submit
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    errorDiv.style.display = 'none';
+    const name = nameInput.value.trim();
+    const age = parseInt(ageInput.value, 10);
+
+    if (!name) {
+      showError('Voer alstublieft uw naam in.');
+      return;
+    }
+    if (!age || age <= 0) {
+      showError('Voer een geldige leeftijd in.');
+      return;
+    }
+
+    console.log(`[gate] Gebruiker ingevoerd: ${name}, Leeftijd: ${age}`);
+    localStorage.setItem('visitorName', name);
+    localStorage.setItem('visitorAge', String(age));
+
+    if (age < 16) {
+      console.log('[gate] Geen toestemming: leeftijd onder 16. Redirecting naar denied.html');
+      window.location.href = 'denied.html';
+      return;
+    }
+
+    hideOverlay();
+    updateLogoutButton(true);
+  });
+
+  // Clear knop in overlay (wis invoer maar blijf op overlay)
+  clearBtn.addEventListener('click', () => {
+    nameInput.value = '';
+    ageInput.value = '';
+    showError('Invoer gewist. Vul opnieuw in en klik Start.');
+    nameInput.focus();
+  });
+
+  // Logout functie: verwijder opgeslagen gegevens en toon gate opnieuw
+  function logout() {
+    console.log('[gate] Uitloggen — verwijder opgeslagen naam en leeftijd');
+    localStorage.removeItem('visitorName');
+    localStorage.removeItem('visitorAge');
+    updateLogoutButton(false);
+    showOverlay();
+  }
+
+  // Zorg dat logoutBtn altijd een listener heeft, ook als initially hidden
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', logout);
+  }
+
+  function showError(msg) {
+    errorDiv.innerText = msg;
+    errorDiv.style.display = 'block';
+  }
+});
+
+// Verwijder opgeslagen gegevens bij afsluiten pagina
+window.addEventListener('unload', () => {
+    localStorage.removeItem('visitorName');
+    localStorage.removeItem('visitorAge');
+    console.log('[gate] Opgeslagen gegevens verwijderd bij afsluiten');
+});
+
+// Of gebruik beforeunload voor een iets vroeger moment
+window.addEventListener('beforeunload', () => {
+    localStorage.removeItem('visitorName');
+    localStorage.removeItem('visitorAge');
+    console.log('[gate] Opgeslagen gegevens verwijderd voor afsluiten');
+});
+
 // Wacht tot het volledige document geladen is
 document.addEventListener("DOMContentLoaded", () => {
   // Minimale toegestane leeftijd
