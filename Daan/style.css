@@ -58,7 +58,7 @@ body {
 footer {
   background-color: #2F5755;
   padding: 10px;
-  position: fixed;
+
   left: 0;
   bottom: 0;
   width: 100%;
@@ -79,7 +79,12 @@ main>a {
 }
 
 /* button effect */
-.button:hover {
+.button:hover, .return:hover {
   transform: scale(1.2);
   margin: 10px;
+}
+
+.return {
+  background-color: brown;
+  color: white;
 }
